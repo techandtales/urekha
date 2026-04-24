@@ -1,0 +1,34 @@
+{
+  "name": "public",
+  "type": "folder",
+  "description": "Static assets served directly by the web server. Includes images, internationalization (i18n) localization files, and textures for 3D visualizations.",
+  "symbol": ["static-files", "assets"],
+  "subfolders": [
+    {
+      "name": "locales",
+      "type": "folder",
+      "description": "JSON files containing translation strings for English (en) and Hindi (hi).",
+      "symbol": ["i18n", "translations"]
+    },
+    {
+      "name": "textures",
+      "type": "folder",
+      "description": "Graphical textures for 3D planet models and background effects.",
+      "symbol": ["graphics", "3d-assets"]
+    },
+    {
+      "name": "pdf-presets",
+      "type": "folder",
+      "description": "Images and icons used exclusively for branding within generated PDF documents.",
+      "symbol": ["pdf-branding"]
+    }
+  ],
+  "subfiles": [
+    {
+      "name": "favicon.ico",
+      "type": "file",
+      "description": "Website icon displayed in browser tabs.",
+      "symbol": ["branding"]
+    }
+  ]
+}

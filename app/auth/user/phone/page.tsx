@@ -1,0 +1,82 @@
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
+import { Phone, ArrowRight } from "lucide-react";
+import { AuthLayout } from "@/components/auth/AuthLayout";
+import { AuthInput } from "@/components/auth/AuthInput";
+import { AuthButton } from "@/components/auth/AuthButton";
+import { useRouter } from "next/navigation";
+
+export default function UserPhonePage() {
+    const router = useRouter();
+    const [isLoading, setIsLoading] = useState(false);
+    const [phone, setPhone] = useState("");
+    const [error, setError] = useState("");
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setError("");
+
+        if (!phone || phone.length < 10) {
+            setError("Please enter a valid phone number");
+            return;
+        }
+
+        setIsLoading(true);
+        // Simulate API call
+        setTimeout(() => {
+            setIsLoading(false);
+            // Navigate to OTP verification for USER
+            router.push(`/auth/verify-otp?role=user&phone=${encodeURIComponent(phone)}`);
+        }, 1500);
+    };
+
+    return (
+        <AuthLayout
+            title="User Login"
+            description="Enter your mobile number to access your account."
+        >
+            <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="space-y-2">
+                    <AuthInput
+                        name="phone"
+                        label="Phone Number"
+                        type="tel"
+                        icon={Phone}
+                        placeholder="+91 98765 43210"
+                        required
+                        value={phone}
+                        onChange={(e) => {
+                            const val = e.target.value.replace(/[^\d+ ]/g, '');
+                            setPhone(val);
+                            setError("");
+                        }}
+                        error={error}
+                    />
+                    <p className="text-xs text-muted-foreground ml-1">
+                        We'll send you a One Time Password (OTP) to verify securely.
+                    </p>
+                </div>
+
+                <div className="pt-2">
+                    <AuthButton type="submit" isLoading={isLoading}>
+                        Send OTP
+                        <ArrowRight className="w-4 h-4 ml-2 opacity-80" />
+                    </AuthButton>
+                </div>
+
+                <div className="mt-4 text-center text-sm text-muted-foreground">
+                    <div className="flex justify-center gap-6">
+                        <Link
+                            href="/auth/user/login"
+                            className="text-foreground hover:underline"
+                        >
+                            Back to Email Login
+                        </Link>
+                    </div>
+                </div>
+            </form>
+        </AuthLayout>
+    );
+}

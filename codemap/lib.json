@@ -1,0 +1,98 @@
+{
+  "name": "lib",
+  "type": "folder",
+  "description": "Internal library containing the core logic, state management, and service integrations for the URekha platform.",
+  "symbol": ["core-infrastructure"],
+  "subfolders": [
+    {
+      "name": "store",
+      "type": "folder",
+      "description": "Redux Toolkit configuration and data slices.",
+      "symbol": ["redux", "global-state"],
+      "subfiles": [
+        {
+          "name": "index.ts",
+          "type": "file",
+          "description": "Redux store initialization and root reducer."
+        },
+        {
+          "name": "auth-slice.ts",
+          "type": "file",
+          "description": "State management for user sessions and permissions."
+        },
+        {
+          "name": "jyotisham-slice.ts",
+          "type": "file",
+          "description": "State for astrological data and chart responses."
+        },
+        {
+          "name": "modular-pipeline-slice.ts",
+          "type": "file",
+          "description": "Tracking state for the asynchronous generation pipeline."
+        }
+      ]
+    },
+    {
+      "name": "pipeline",
+      "type": "folder",
+      "description": "Multi-stage orchestration for fetching and synthesizing astrological reports.",
+      "symbol": ["orchestrator", "generation-logic"],
+      "subfiles": [
+        {
+          "name": "constants.ts",
+          "type": "file",
+          "description": "Pipeline-specific configuration flags and timeouts."
+        },
+        {
+          "name": "modularOrchestrator.ts",
+          "type": "file",
+          "description": "The primary engine for sequential/parallel prediction solving."
+        },
+        {
+          "name": "userOrchestrator.ts",
+          "type": "file",
+          "description": "User-facing wrapper for report generation requests."
+        },
+        {
+          "name": "userPlansConfig.ts",
+          "type": "file",
+          "description": "Feature gating and plan-based logic configurations."
+        }
+      ]
+    },
+    {
+      "name": "services",
+      "type": "folder",
+      "description": "External client integrations.",
+      "subfiles": [
+        {
+          "name": "prediction-service.ts",
+          "type": "file",
+          "description": "Client for the AI prediction engine."
+        },
+        {
+          "name": "r2.ts",
+          "type": "file",
+          "description": "Cloudflare R2 storage client for report persistence."
+        }
+      ]
+    }
+  ],
+  "subfiles": [
+    {
+      "name": "mongodb.ts",
+      "type": "file",
+      "description": "Shared MongoDB connection instance."
+    },
+    {
+      "name": "supabase.ts",
+      "type": "file",
+      "description": "Shared Supabase client instance."
+    },
+    {
+      "name": "fonts.ts",
+      "type": "file",
+      "description": "Next.js Google Fonts definitions."
+    }
+  ]
+}

@@ -1,0 +1,259 @@
+:root {
+  --ink-primary: #1F2937;
+  --paper: #FDFDF9;
+  --crimson: #9F1239;
+  --gold: #B8963E;
+}
+
+/* PDF Default Reset */
+.pdf-page {
+  /* Critical: Override the global Tailwind fonts.
+     Cinzel (the default global serif) is an uppercase-only font. */
+  --font-cinzel: var(--font-lora);
+  --font-outfit: var(--font-lato);
+  font-family: var(--font-lato), var(--font-hindi-sans), sans-serif;
+  color: var(--ink-primary);
+  background-color: var(--paper);
+  line-height: 1.5;
+}
+
+/* Force Tailwind classes to re-evaluate under .pdf-page */
+.pdf-page .font-serif {
+  font-family: var(--font-lora), var(--font-hindi-serif), serif !important;
+}
+
+.pdf-page .font-sans {
+  font-family: var(--font-lato), var(--font-hindi-sans), sans-serif !important;
+}
+
+/* Headings */
+.pdf-title {
+  font-family: var(--font-lora), var(--font-hindi-serif), serif;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.pdf-subtitle {
+  font-family: var(--font-lato), var(--font-hindi-sans), sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+.pdf-header {
+  font-family: var(--font-lora), var(--font-hindi-serif), serif;
+  font-weight: 700;
+}
+
+/* Body Text */
+.pdf-body {
+  font-family: var(--font-lato), var(--font-hindi-sans), sans-serif;
+  font-size: 10pt;
+  line-height: 1.6;
+}
+
+.pdf-caption {
+  font-family: var(--font-lato), var(--font-hindi-sans), sans-serif;
+  font-size: 8pt;
+  opacity: 0.7;
+}
+
+/* ─────────────────────────────────────────────────────
+   AI PREDICTIONS – BOOK-LIKE LAYOUT
+   Each prediction renders inside a .prediction-page
+   instead of the fixed A4 box, so content can flow
+   naturally across multiple screen/print pages.
+───────────────────────────────────────────────────── */
+
+/* The outer A4-width column for each prediction */
+.prediction-page {
+  width: 210mm;
+  min-height: 267mm;         /* A4 minus top/bottom padding */
+  padding: 15mm 18mm 10mm;   /* mirrors PdfPageLayout padding */
+  background-color: var(--paper);
+  box-sizing: border-box;
+  overflow: visible;          /* let content flow to next page */
+  page-break-after: always;   /* print: each category on new page */
+  break-after: page;
+}
+
+/* Large Chapter Heading (## in markdown) */
+.prediction-h2 {
+  font-family: var(--font-lora), var(--font-hindi-serif), serif;
+  font-size: 18pt;
+  font-weight: 700;
+  color: var(--crimson);
+  letter-spacing: 0.04em;
+  margin: 1.4em 0 0.3em;
+  padding-bottom: 0.3em;
+  border-bottom: 1.5px solid #F9D5DC;
+  line-height: 1.25;
+  page-break-after: avoid;
+  break-after: avoid;
+}
+
+/* Sub-section Heading (### in markdown) */
+.prediction-h3 {
+  font-family: var(--font-lora), var(--font-hindi-serif), serif;
+  font-size: 13pt;
+  font-weight: 700;
+  color: #7C2D12;
+  margin: 1.2em 0 0.25em;
+  page-break-after: avoid;
+  break-after: avoid;
+}
+
+/* Body paragraph */
+.prediction-p {
+  font-family: var(--font-lato), var(--font-hindi-sans), sans-serif;
+  font-size: 10.5pt;
+  line-height: 1.75;
+  color: var(--ink-primary);
+  text-align: justify;
+  margin-bottom: 0.75em;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Bold keyword emphasis inside paragraphs */
+.prediction-p strong {
+  color: var(--crimson);
+  font-weight: 700;
+}
+
+/* Opening intro blurb */
+.prediction-intro {
+  font-family: var(--font-lora), var(--font-hindi-serif), serif;
+  font-size: 11pt;
+  line-height: 1.8;
+  color: #4B3030;
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 1.5em;
+}
+
+/* Category label above the chapter title */
+.prediction-category-label {
+  font-family: var(--font-lato), sans-serif;
+  font-size: 8pt;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+  margin-bottom: 0.3em;
+}
+
+/* Chapter main title */
+.prediction-chapter-title {
+  font-family: var(--font-lora), serif;
+  font-size: 22pt;
+  font-weight: 700;
+  color: var(--ink-primary);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 0.15em;
+}
+
+/* Decorative divider */
+.prediction-divider {
+  width: 60mm;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--crimson), transparent);
+  margin: 0.6em auto 1.4em;
+  opacity: 0.5;
+}
+
+/* ─────────────────────────────────────────────────────
+   PRINT / SAVE AS PDF
+   When window.print() is called:
+   • All UI chrome (nav, buttons, sidebar) is hidden
+   • Only #printable-report and its children are shown
+   • Each A4 page div gets a page-break so the printer
+     maps them 1-to-1 onto PDF pages
+───────────────────────────────────────────────────── */
+
+/* Always hide the print button from the PDF */
+.no-print {
+  display: block; /* visible on screen */
+}
+
+@media print {
+  /* ── A4 page with zero margin ── */
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  /* ── Unlock the whole document so nothing clips ──
+     This is the critical fix: parent containers in the
+     dashboard have overflow:hidden which clips the print
+     output to a few px. Setting overflow:visible on
+     everything lets the full content show. */
+  html,
+  body {
+    overflow: visible !important;
+    height: auto !important;
+    background: white !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  * {
+    overflow: visible !important;
+  }
+
+  /* ── Hide all content by default ── */
+  body * {
+    visibility: hidden !important;
+  }
+
+  /* ── Show only the printable report and its children ── */
+  #printable-report,
+  #printable-report * {
+    visibility: visible !important;
+  }
+
+  /* ── Anchor the report at top-left of print canvas ── */
+  #printable-report {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    background: white !important;
+    padding: 0 !important;
+  }
+
+  /* ── Hide non-printable UI elements ── */
+  .no-print {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  /* ── Force full colour printing (borders, gradients, backgrounds) ── */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* ── Each direct child of the report → new PDF page ── */
+  #printable-report > div {
+    page-break-after: always;
+    break-after: page;
+  }
+
+  /* ── Keep headings with their following content ── */
+  h1, h2, h3, h4 {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  /* ── Never break inside an A4 frame box ── */
+  [style*="width: 210mm"],
+  [style*="width:210mm"] {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+}
+

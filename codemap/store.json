@@ -1,0 +1,14 @@
+{
+  "name": "store",
+  "type": "folder",
+  "description": "Global state management directory (often complementary to lib/store) for defining application-wide shared state abstractions.",
+  "symbol": ["state-management", "store-config"],
+  "subfiles": [
+    {
+      "name": "index.ts",
+      "type": "file",
+      "description": "Main entry point for store configuration and provider setup.",
+      "symbol": ["store-init"]
+    }
+  ]
+}

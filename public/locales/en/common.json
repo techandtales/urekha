@@ -1,0 +1,33 @@
+{
+  "brand": "Urekha Vedic Intelligence",
+  "page": "Page",
+  "gender": {
+    "male": "Male",
+    "female": "Female"
+  },
+  "birthPage": {
+    "title": "Janma Vivaraṇa",
+    "subtitle": "Astrological Portfolio",
+    "headers": {
+      "coordinates": "Birth Coordinates",
+      "vedic": "Vedic Elements"
+    },
+    "labels": {
+      "name": "Name of Native",
+      "gender": "Gender",
+      "dob": "Date of Birth",
+      "tob": "Time of Birth",
+      "pob": "Place of Birth",
+      "lat": "Latitude",
+      "lon": "Longitude",
+      "timezone": "Time Zone",
+      "ayanamsha": "Ayanāṁśa Used",
+      "lagna": "Lagna (Ascendant)",
+      "rashi": "Rāśi (Moon Sign)",
+      "nakshatra": "Nakṣatra",
+      "tithi": "Tithi",
+      "yoga": "Yoga / Karaṇa"
+    },
+    "note": "Note: All calculations in this report are based strictly on the birth details provided above. Any variation in date, time, or place of birth may alter astrological results."
+  }
+}

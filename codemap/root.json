@@ -1,0 +1,100 @@
+{
+  "name": "urekhafrontend",
+  "type": "folder",
+  "description": "Root directory of the URekha frontend application, built with Next.js, TypeScript, and Tailwind CSS. It serves as the gateway for the Astro-AI Astrology platform.",
+  "symbol": ["root", "nextjs", "frontend", "navigation"],
+  "subfolders": [
+    {
+      "name": "app",
+      "type": "folder",
+      "description": "Next.js App Router directory containing application routes, layouts, and API endpoints.",
+      "symbol": ["routes", "pages", "api"]
+    },
+    {
+      "name": "components",
+      "type": "folder",
+      "description": "Reusable React components organized by category (UI, charts, forms, layout, etc.).",
+      "symbol": ["ui-kit", "react-components", "design-system"]
+    },
+    {
+      "name": "lib",
+      "type": "folder",
+      "description": "Core business logic, API clients, authentication configurations, and shared constants.",
+      "symbol": ["core-logic", "api-clients", "auth-config"]
+    },
+    {
+      "name": "utils",
+      "type": "folder",
+      "description": "Helper functions and low-level utilities used across the application.",
+      "symbol": ["helpers", "formatting", "common-utils"]
+    },
+    {
+      "name": "hooks",
+      "type": "folder",
+      "description": "Custom React hooks for managing stateful logic and side effects.",
+      "symbol": ["react-hooks", "state-logic"]
+    },
+    {
+      "name": "store",
+      "type": "folder",
+      "description": "Global state management configurations (Redux or Zustand).",
+      "symbol": ["state-management", "global-store"]
+    },
+    {
+      "name": "types",
+      "type": "folder",
+      "description": "Global TypeScript interface and type definitions.",
+      "symbol": ["typescript-defs", "interfaces"]
+    },
+    {
+      "name": "scripts",
+      "type": "folder",
+      "description": "Maintenance, migration, and automation scripts for the project.",
+      "symbol": ["automation", "maintenance"]
+    },
+    {
+      "name": "public",
+      "type": "folder",
+      "description": "Static assets including images, fonts, and icons accessible via absolute URLs.",
+      "symbol": ["static-assets", "images", "fonts"]
+    }
+  ],
+  "subfiles": [
+    {
+      "name": "package.json",
+      "type": "file",
+      "description": "Project manifest and dependency management file.",
+      "symbol": ["dependencies", "scripts"]
+    },
+    {
+      "name": "next.config.ts",
+      "type": "file",
+      "description": "Next.js framework configuration (images, experimental features, build options).",
+      "symbol": ["framework-config"]
+    },
+    {
+      "name": "tailwind.config.ts",
+      "type": "file",
+      "description": "Tailwind CSS design tokens, themes, and plugin configurations.",
+      "symbol": ["styling-tokens", "themes"]
+    },
+    {
+      "name": "AGENTS.md",
+      "type": "file",
+      "description": "Guiding principles and separation of concerns for AI agents working on this repo.",
+      "symbol": ["ai-guidelines", "governance"]
+    },
+    {
+      "name": "CLAUDE.md",
+      "type": "file",
+      "description": "Agent-specific memory and rule persistence for the Claude coding assistant.",
+      "symbol": ["agent-memory"]
+    },
+    {
+      "name": "tsconfig.json",
+      "type": "file",
+      "description": "TypeScript compiler settings and path aliases.",
+      "symbol": ["ts-compiler"]
+    }
+  ]
+}

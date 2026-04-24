@@ -1,0 +1,12 @@
+# 🚀 Global Antigravity Rules
+.git/
+node_modules/
+venv/ .venv/ env/
+__pycache__/
+dist/ build/ bin/ out/ .next/
+*.o *.out
+package-lock.json yarn.lock pnpm-lock.yaml
+*.log
+.pytest_cache/
+*.mp4 *.mov *.zip *.png *.pdf
+.DS_Store

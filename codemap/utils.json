@@ -1,0 +1,32 @@
+{
+  "name": "utils",
+  "type": "folder",
+  "description": "Collection of low-level helper functions and external library configurations used across the application.",
+  "symbol": ["utility-toolkit"],
+  "subfolders": [
+    {
+      "name": "supabase",
+      "type": "folder",
+      "description": "Supabase connection utilities for different execution contexts.",
+      "subfiles": [
+        { "name": "client.ts", "type": "file", "description": "Client-side Supabase instance using environment public keys." },
+        { "name": "server.ts", "type": "file", "description": "Server-side client with cookie handling for Next.js SSR/ISR." },
+        { "name": "proxy.ts", "type": "file", "description": "Utility for routing Supabase requests through internal proxies." }
+      ]
+    },
+    {
+      "name": "payments",
+      "type": "folder",
+      "description": "Logic for handling transactions and gateway integrations.",
+      "symbol": ["billing"]
+    }
+  ],
+  "subfiles": [
+    {
+      "name": "svgToPng.ts",
+      "type": "file",
+      "description": "Utility function to convert SVG chart elements into PNG buffers for PDF compatibility.",
+      "symbol": ["canvas-helpers"]
+    }
+  ]
+}

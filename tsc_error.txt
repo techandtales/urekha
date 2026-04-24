@@ -1,0 +1,46 @@
+﻿components/pdf/birthDetails/birthdetails.tsx(2,26): error TS2307: Cannot find module '@/newtypes/languages' or its corresponding type declarations.
+components/pdf/birthDetails/birthdetails.tsx(17,30): error TS2307: Cannot find module '@/newtypes/birthDetails' or its corresponding type declarations.
+components/pdf/birthDetails/birthdetails.tsx(18,36): error TS2307: Cannot find module '@/newtypes/extended-horoscope/extendedKundli' or its corresponding type declarations.
+components/pdf/birthDetails/birthPanchang.tsx(4,60): error TS2307: Cannot find module '@/newtypes/extended-horoscope/extendedKundli' or its corresponding type declarations.
+components/pdf/birthDetails/birthPanchang.tsx(6,31): error TS2307: Cannot find module '@/newtypes/languages' or its corresponding type declarations.
+components/pdf/birthDetails/readingInstruct.tsx(13,31): error TS2307: Cannot find module '@/newtypes/languages' or its corresponding type declarations.
+components/pdf/charts/DivisionalCharts.tsx(9,42): error TS2307: Cannot find module '@/newtypes/horoscope/divisionalChart' or its corresponding type declarations.
+components/pdf/charts/DivisionalCharts.tsx(25,31): error TS2307: Cannot find module '@/newtypes/languages' or its corresponding type declarations.
+components/pdf/charts/NorthIndianChart.tsx(4,31): error TS2307: Cannot find module '@/newtypes/horoscope/divisionalChart' or its corresponding type declarations.
+components/pdf/dasha/DashaTable.tsx(11,31): error TS2307: Cannot find module '@/newtypes/languages' or its corresponding type declarations.
+components/pdf/dasha/DashaTable.tsx(52,19): error TS2322: Type 'string' is not assignable to type 'never'.
+components/pdf/dasha/VimshottariDashaPage.tsx(15,31): error TS2307: Cannot find module '@/newtypes/languages' or its corresponding type declarations.
+components/pdf/dasha/YoginiDashaPage.tsx(15,31): error TS2307: Cannot find module '@/newtypes/languages' or its corresponding type declarations.
+components/pdf/dosha/DoshaReportPage.tsx(17,31): error TS2307: Cannot find module '@/newtypes/languages' or its corresponding type declarations.
+components/pdf/floralHeader.tsx(4,26): error TS2307: Cannot find module '@/newtypes/languages' or its corresponding type declarations.
+components/pdf/friendship/FriendshipPage.tsx(8,63): error TS2307: Cannot find module '@/newtypes/extended-horoscope/friendshipTable' or its corresponding type declarations.
+components/pdf/friendship/FriendshipPage.tsx(10,31): error TS2307: Cannot find module '@/newtypes/languages' or its corresponding type declarations.
+components/pdf/kp/KpHousesPage.tsx(12,8): error TS2307: Cannot find module '@/newtypes/kpAstrology/kpCuspsDetails' or its corresponding type declarations.
+components/pdf/kp/KpHousesPage.tsx(20,31): error TS2307: Cannot find module '@/newtypes/languages' or its corresponding type declarations.
+components/pdf/kp/KpPlanetsPage.tsx(8,26): error TS2307: Cannot find module '@/newtypes/languages' or its corresponding type declarations.
+components/pdf/kp/KpPlanetsPage.tsx(13,8): error TS2307: Cannot find module '@/newtypes/kpAstrology/kpPlanetDetails' or its corresponding type declarations.
+components/pdf/kp/KpSignificatorsPage.tsx(7,63): error TS2307: Cannot find module '@/newtypes/kpAstrology/kpPlanetSignifications' or its corresponding type declarations.
+components/pdf/kp/KpSignificatorsPage.tsx(8,60): error TS2307: Cannot find module '@/newtypes/kpAstrology/kpHouseSignificators' or its corresponding type declarations.
+components/pdf/kp/KpSignificatorsPage.tsx(15,31): error TS2307: Cannot find module '@/newtypes/languages' or its corresponding type declarations.
+components/pdf/kp/KpSignificatorsPage.tsx(81,20): error TS18046: 'houses' is of type 'unknown'.
+components/pdf/kp/KpSignificatorsPage.tsx(117,20): error TS18046: 'planets' is of type 'unknown'.
+components/pdf/lagnaProfile/lagnaProfile.tsx(20,56): error TS2307: Cannot find module '@/newtypes/horoscope/ascendantReport' or its corresponding type declarations.
+components/pdf/lagnaProfile/lagnaProfile.tsx(24,31): error TS2307: Cannot find module '@/newtypes/languages' or its corresponding type declarations.
+components/pdf/lagnaProfile/lagnaProfile2.tsx(14,31): error TS2307: Cannot find module '@/newtypes/languages' or its corresponding type declarations.
+components/pdf/planetryDetails/planetDetails.tsx(21,31): error TS2307: Cannot find module '@/newtypes/languages' or its corresponding type declarations.
+components/pdf/planetryDetails/planetDetails.tsx(25,8): error TS2307: Cannot find module '@/newtypes/horoscope/palnetDetails' or its corresponding type declarations.
+components/pdf/static/about.tsx(4,26): error TS2307: Cannot find module '@/newtypes/languages' or its corresponding type declarations.
+components/pdf/static/about.tsx(79,13): error TS7053: Element implicitly has an 'any' type because expression of type 'Language' can't be used to index type '{ en: { sectionTitle: string; mainTitle: string; p1: Element; p2: string; p3: Element; philosophyTitle: string; philosophyQuote: Element; brandName: string; footerTitle: string; }; hi: { ...; }; }'.
+components/pdf/static/cover.tsx(4,26): error TS2307: Cannot find module '@/newtypes/languages' or its corresponding type declarations.
+components/pdf/static/cover.tsx(24,13): error TS7053: Element implicitly has an 'any' type because expression of type 'Language' can't be used to index type '{ en: { invocation: string; brandTitle: string; brandSubtitle: string; website: string; }; hi: { invocation: string; brandTitle: string; brandSubtitle: string; website: string; }; }'.
+components/pdf/static/cover.tsx(141,33): error TS2872: This kind of expression is always truthy.
+components/pdf/static/howtoread.tsx(4,26): error TS2307: Cannot find module '@/newtypes/languages' or its corresponding type declarations.
+components/pdf/static/howtoread.tsx(93,13): error TS7053: Element implicitly has an 'any' type because expression of type 'Language' can't be used to index type '{ en: { subtitle: string; title: string; p1: Element; p2: Element; p3: Element; principlesTitle: string; principlesList: string[]; brandName: string; footerTitle: string; }; hi: { ...; }; }'.
+components/pdf/static/howtoread.tsx(262,36): error TS7006: Parameter 'item' implicitly has an 'any' type.
+components/pdf/static/howtoread.tsx(262,42): error TS7006: Parameter 'index' implicitly has an 'any' type.
+components/pdf/static/index.tsx(4,26): error TS2307: Cannot find module '@/newtypes/languages' or its corresponding type declarations.
+components/pdf/static/index.tsx(56,13): error TS7053: Element implicitly has an 'any' type because expression of type 'Language' can't be used to index type '{ en: { headerSubtitle: string; headerTitle: string; items: { title: string; subtitle: string; page: string; }[]; brandName: string; footerTitle: string; }; hi: { headerSubtitle: string; headerTitle: string; items: { ...; }[]; brandName: string; footerTitle: string; }; }'.
+components/pdf/static/index.tsx(157,25): error TS7006: Parameter 'item' implicitly has an 'any' type.
+components/pdf/static/index.tsx(157,31): error TS7006: Parameter 'index' implicitly has an 'any' type.
+lib/i18n/types.ts(1,31): error TS2307: Cannot find module '@/newtypes/languages' or its corresponding type declarations.
+lib/store/birth-details-slice.ts(2,30): error TS2307: Cannot find module '@/newtypes/birthDetails' or its corresponding type declarations.

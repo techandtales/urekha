@@ -1,0 +1,88 @@
+/* TextRevealSection.module.css */
+
+.section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    background-color: transparent;
+    /* Changed from #0D0D0D to transparent to inherit page bg */
+    padding: 10% 5%;
+    overflow: hidden;
+    position: relative;
+}
+
+.textContainer {
+    font-size: 10vw;
+    letter-spacing: -0.01em;
+    line-height: 100%;
+    margin: 0;
+    width: 100%;
+    border-bottom: 1px solid #2F2B28;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    position: relative;
+    cursor: default;
+    font-weight: 900;
+    text-transform: uppercase;
+    padding-left: 0;
+}
+
+/* Base text is always visible but dim */
+.bgText {
+    color: rgb(182, 182, 182, 0.2);
+    width: 100%;
+}
+
+/* Foreground text is absolutely positioned over the base text and colored gold */
+.fgText {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #BF9004, #F2C94C) no-repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    /* Use color transparent so the background gradient shows through */
+
+    /* Hardware accelerated clipping mask. GSAP handles the inset animation */
+    clip-path: inset(0% 100% 0% 0%);
+    will-change: clip-path;
+    /* Hint for browser optimization */
+}
+
+/* Hover Overlay */
+.hoverSpan {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background-color: #BF9004;
+    color: #FF0000;
+
+    clip-path: polygon(0 50%, 100% 50%, 100% 50%, 0 50%);
+    transform-origin: center;
+    transition: all cubic-bezier(.1, .5, .5, 1) 0.4s;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 0;
+}
+
+.textContainer:hover>.hoverSpan {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+@media (max-width: 768px) {
+    .textContainer {
+        font-size: 15vw;
+    }
+}

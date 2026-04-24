@@ -1,0 +1,155 @@
+{
+  "name": "app",
+  "type": "folder",
+  "description": "Core routing directory using Next.js App Router. It manages authentication flows, administrative dashboards, and user-facing astrology services.",
+  "symbol": ["nextjs", "app-router", "routing-root"],
+  "subfolders": [
+    {
+      "name": "(auth)",
+      "type": "folder",
+      "description": "Logical route group for authentication-related pages.",
+      "symbol": ["auth-routes"],
+      "subfolders": [
+        {
+          "name": "actions",
+          "type": "folder",
+          "description": "Server actions for database persistence and financial transactions.",
+          "symbol": ["server-actions", "supabase-sync"],
+          "subfiles": [
+            { "name": "kundli-actions.ts", "type": "file", "description": "Handles token deduction and cross-database report mapping." },
+            { "name": "report-actions.ts", "type": "file", "description": "Unified backend service for cross-schema report metadata lookups and MongoDB data retrieval." }
+          ]
+        },
+        {
+          "name": "login",
+          "type": "folder",
+          "description": "User login directory.",
+          "symbol": ["login-flow"],
+          "subfiles": [
+            {
+              "name": "page.tsx",
+              "type": "file",
+              "description": "Login page component balancing social and email auth.",
+              "symbol": ["auth-ui"]
+            }
+          ]
+        },
+        {
+          "name": "logout",
+          "type": "folder",
+          "description": "Logout processing directory.",
+          "subfiles": [
+            {
+              "name": "page.tsx",
+              "type": "file",
+              "description": "Handles session destruction and redirection to landing.",
+              "symbol": ["session-management"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "(platform)",
+      "type": "folder",
+      "description": "Main platform sections for authenticated users.",
+      "symbol": ["platform-core"],
+      "subfolders": [
+        {
+          "name": "admin",
+          "type": "folder",
+          "description": "Admin-only routes for system management.",
+          "subfolders": [
+            {
+              "name": "dashboard",
+              "type": "folder",
+              "subfiles": [{ "name": "page.tsx", "type": "file", "description": "Admin overview." }]
+            },
+            {
+              "name": "users",
+              "type": "folder",
+              "description": "User management tools.",
+              "subfiles": [{ "name": "page.tsx", "type": "file", "description": "List and audit users." }]
+            }
+          ]
+        },
+        {
+          "name": "dashboard",
+          "type": "folder",
+          "description": "Main user/agent portal.",
+          "subfiles": [
+            { "name": "page.tsx", "type": "file", "description": "Dashboard entry." },
+            { 
+              "name": "dashboard-client.tsx", 
+              "type": "file", 
+              "description": "URL-synchronized dashboard orchestrator managing tab states and report selection via search parameters. Handles real-time tab switching and deep-linking support.",
+              "symbol": ["dashboard-orchestrator", "url-sync", "socket-sync"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "api",
+      "type": "folder",
+      "description": "API endpoints for the application.",
+      "subfolders": [
+        {
+          "name": "auth",
+          "type": "folder",
+          "subfolders": [{ "name": "confirm", "type": "folder", "subfiles": [{ "name": "route.ts", "type": "file" }] }]
+        }
+      ]
+    },
+    {
+      "name": "generate",
+      "type": "folder",
+      "description": "Kundli generation routes.",
+      "subfolders": [
+        {
+          "name": "kundli",
+          "type": "folder",
+          "subfiles": [
+            { "name": "page.tsx", "type": "file", "description": "Form for birth details." },
+            { "name": "generate-client.tsx", "type": "file", "description": "Submission and pipeline handling." }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "user-report",
+      "type": "folder",
+      "description": "Static and dynamic reports for users.",
+      "subfolders": [
+        {
+          "name": "[reportId]",
+          "type": "folder",
+          "subfiles": [
+            { "name": "page.tsx", "type": "file", "description": "Individual report viewer." },
+            { "name": "report-client.tsx", "type": "file", "description": "Report interaction logic." }
+          ]
+        }
+      ]
+    }
+  ],
+  "subfiles": [
+    {
+      "name": "layout.tsx",
+      "type": "file",
+      "description": "The root layout with font and metadata configurations.",
+      "symbol": ["base-layout"]
+    },
+    {
+      "name": "page.tsx",
+      "type": "file",
+      "description": "Landing page with HERO and features.",
+      "symbol": ["landing"]
+    },
+    {
+      "name": "globals.css",
+      "type": "file",
+      "description": "Tailwind and custom global styles.",
+      "symbol": ["css"]
+    }
+  ]
+}

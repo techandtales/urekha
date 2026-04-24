@@ -1,0 +1,20 @@
+{
+  "name": "hooks",
+  "type": "folder",
+  "description": "Custom React hooks for encapsulating stateful logic, UI interactions, and responsive behaviors.",
+  "symbol": ["react-hooks"],
+  "subfiles": [
+    {
+      "name": "use-mobile.tsx",
+      "type": "file",
+      "description": "Hook for detecting mobile viewport size for responsive UI layout shifts.",
+      "symbol": ["responsive"]
+    },
+    {
+      "name": "use-toast.ts",
+      "type": "file",
+      "description": "Hook for managing UI notifications and error messages using the Shadcn Toast component.",
+      "symbol": ["notifications"]
+    }
+  ]
+}

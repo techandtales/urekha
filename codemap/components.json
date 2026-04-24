@@ -1,0 +1,64 @@
+{
+  "name": "components",
+  "type": "folder",
+  "description": "Comprehensive library of reusable UI components and specialized astrology modules. It is organized by domain to ensure modularity and ease of maintenance.",
+  "symbol": ["component-library", "ui-system"],
+  "subfolders": [
+    {
+      "name": "ui",
+      "type": "folder",
+      "description": "Base UI primitives and premium interactive elements.",
+      "symbol": ["primitives", "visual-effects"],
+      "subfiles": [
+        { "name": "AnimatedDownloadButton.tsx", "type": "file", "description": "Interactive button with download animation." },
+        { "name": "AnimatedText.tsx", "type": "file", "description": "Typography with scroll/hover entrance animations." },
+        { "name": "PremiumHero.tsx", "type": "file", "description": "The high-impact marketing hero section." },
+        { "name": "RotatingWheel.tsx", "type": "file", "description": "3D/CSS rotating zodiac wheel visualization." }
+      ]
+    },
+    {
+      "name": "kundli",
+      "type": "folder",
+      "description": "Specialized components for rendering Kundli charts and astrological data.",
+      "subfolders": [
+        {
+          "name": "charts",
+          "type": "folder",
+          "subfiles": [{ "name": "NorthIndianChart.tsx", "type": "file", "description": "Standard diamond-shaped Vedic chart." }]
+        }
+      ]
+    },
+    {
+      "name": "pdf",
+      "type": "folder",
+      "description": "Templates and logic for generating printable PDF astrology reports.",
+      "subfolders": [
+        {
+          "name": "templates",
+          "type": "folder",
+          "subfiles": [{ "name": "StandardKundliReport.tsx", "type": "file" }]
+        }
+      ]
+    },
+    {
+      "name": "agent",
+      "type": "folder",
+      "description": "Components specific to the offline/agent portal.",
+      "subfiles": [
+        { "name": "AgentHeader.tsx", "type": "file" },
+        {
+          "name": "dashboard",
+          "type": "folder",
+          "description": "Sub-modules for the agent dashboard experience.",
+          "subfiles": [
+            { "name": "GenerateTab.tsx", "type": "file", "description": "Embedded generation pipeline for agent-led Kundli creation.", "symbol": ["generation-ui", "finalization-view"] },
+            { "name": "HistoryTab.tsx", "type": "file", "description": "Historical report list with navigation triggers." },
+            { "name": "ReportsOverviewTab.tsx", "type": "file", "description": "Agent HUD featuring real-time analytics and credit ledger management." },
+            { "name": "ViewReportTab.tsx", "type": "file", "description": "Dual-mode viewport supporting live PDF rendering and archival selection." }
+          ]
+        }
+      ]
+    }
+  ],
+  "subfiles": []
+}

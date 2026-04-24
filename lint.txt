@@ -1,0 +1,852 @@
+﻿
+> urekha-web@0.1.0 lint
+> eslint
+
+
+G:\urekha\urekha\urekha\app\(marketing)\about\page.tsx
+  4:10  warning  'Sparkles' is defined but never used  @typescript-eslint/no-unused-vars
+  4:20  warning  'Scroll' is defined but never used    @typescript-eslint/no-unused-vars
+
+G:\urekha\urekha\urekha\app\(marketing)\careers\page.tsx
+  99:28  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+G:\urekha\urekha\urekha\app\(marketing)\contact\page.tsx
+  4:39  warning  'Clock' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\urekha\urekha\urekha\app\(marketing)\ethics\page.tsx
+  37:29  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  37:42  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+G:\urekha\urekha\urekha\app\(marketing)\layout.tsx
+  33:37  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+G:\urekha\urekha\urekha\app\(marketing)\legal\privacy\page.tsx
+  18:33  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  18:36  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  18:39  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  18:43  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  18:46  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  18:55  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+G:\urekha\urekha\urekha\app\(marketing)\legal\refund\page.tsx
+  43:116  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  43:122  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  43:143  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+G:\urekha\urekha\urekha\app\(marketing)\legal\terms\page.tsx
+  44:148  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  44:159  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  44:164  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  44:172  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+G:\urekha\urekha\urekha\app\(marketing)\page.tsx
+  12:7   warning  'TextRevealSection' is assigned a value but never used                                                                                                                                                                                                                                   @typescript-eslint/no-unused-vars
+  15:7   warning  'ReportBook' is assigned a value but never used                                                                                                                                                                                                                                          @typescript-eslint/no-unused-vars
+  17:7   warning  'HowItWorks' is assigned a value but never used                                                                                                                                                                                                                                          @typescript-eslint/no-unused-vars
+  23:7   warning  'Testimonials' is assigned a value but never used                                                                                                                                                                                                                                        @typescript-eslint/no-unused-vars
+  24:7   warning  'AstrologyEducation' is assigned a value but never used                                                                                                                                                                                                                                  @typescript-eslint/no-unused-vars
+  77:13  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+G:\urekha\urekha\urekha\app\(marketing)\platform\page.tsx
+  61:25  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  61:38  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+G:\urekha\urekha\urekha\app\(marketing)\reports\page.tsx
+   4:10  warning  'BookOpen' is defined but never used                             @typescript-eslint/no-unused-vars
+   5:8   warning  'Image' is defined but never used                                @typescript-eslint/no-unused-vars
+  38:85  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+G:\urekha\urekha\urekha\app\auth\actions.ts
+   45:38  warning  'roleError' is assigned a value but never used  @typescript-eslint/no-unused-vars
+   78:19  error    Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+  118:40  warning  'role' is defined but never used                @typescript-eslint/no-unused-vars
+  258:3   warning  'role' is defined but never used                @typescript-eslint/no-unused-vars
+  382:38  warning  'dataError' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+G:\urekha\urekha\urekha\app\auth\agent\login\page.tsx
+  6:37  warning  'Loader2' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\urekha\urekha\urekha\app\auth\agent\phone\page.tsx
+  10:10  warning  'cn' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\urekha\urekha\urekha\app\auth\agent\reset-password\page.tsx
+  10:3  warning  'Sparkles' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\urekha\urekha\urekha\app\auth\agent\update-password\page.tsx
+  13:8  warning  'Link' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\urekha\urekha\urekha\app\auth\agent\verify-otp\page.tsx
+  5:10  warning  'ShieldCheck' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\urekha\urekha\urekha\app\auth\agent\verify\page.tsx
+   15:3   warning  'RefreshCw' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       @typescript-eslint/no-unused-vars
+   35:7   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+G:\urekha\urekha\urekha\app\auth\agent\verify\page.tsx:35:7
+  33 |     const storedEmail = localStorage.getItem("authEmail");
+  34 |     if (storedEmail) {
+> 35 |       setEmail(storedEmail);
+     |       ^^^^^^^^ Avoid calling setState() directly within an effect
+  36 |     } else {
+  37 |       // If we somehow got here without an email, kick back to login
+  38 |       router.push("/auth/agent/login");  react-hooks/set-state-in-effect
+  164:15  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             react/no-unescaped-entities
+
+G:\urekha\urekha\urekha\app\auth\user\login\page.tsx
+  6:37  warning  'Loader2' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\urekha\urekha\urekha\app\auth\user\phone\page.tsx
+  58:27  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+G:\urekha\urekha\urekha\app\auth\user\reset-password\page.tsx
+  10:3  warning  'Sparkles' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\urekha\urekha\urekha\app\auth\user\update-password\page.tsx
+  13:8  warning  'Link' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\urekha\urekha\urekha\app\auth\user\verify-otp\page.tsx
+  5:10  warning  'ShieldCheck' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\urekha\urekha\urekha\app\auth\user\verify\page.tsx
+   15:3   warning  'RefreshCw' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     @typescript-eslint/no-unused-vars
+   35:7   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+G:\urekha\urekha\urekha\app\auth\user\verify\page.tsx:35:7
+  33 |     const storedEmail = localStorage.getItem("authEmail");
+  34 |     if (storedEmail) {
+> 35 |       setEmail(storedEmail);
+     |       ^^^^^^^^ Avoid calling setState() directly within an effect
+  36 |     } else {
+  37 |       // If we somehow got here without an email, kick back to login
+  38 |       router.push("/auth/user/login");  react-hooks/set-state-in-effect
+  164:15  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           react/no-unescaped-entities
+
+G:\urekha\urekha\urekha\app\dashboard\actions.ts
+  32:9   warning  'cost' is assigned a value but never used             @typescript-eslint/no-unused-vars
+  36:7   error    'tokenCost' is never reassigned. Use 'const' instead  prefer-const
+  81:37  warning  'amount' is defined but never used                    @typescript-eslint/no-unused-vars
+
+G:\urekha\urekha\urekha\app\dashboard\dashboard-client.tsx
+    37:14   error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+    38:18   error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+    39:15   error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+    90:50   error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+   124:36   error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+   414:106  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+   465:26   error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+   575:57   error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  1001:46   error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  1002:49   error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  1035:26   error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  1039:46   error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  1039:136  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  1099:46   error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  1099:136  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  1319:46   error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+
+G:\urekha\urekha\urekha\components\auth\AuthInput.tsx
+  16:15  warning  'hasValue' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+G:\urekha\urekha\urekha\components\auth\CountryPhoneInput.tsx
+  17:12  warning  'isFocused' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       @typescript-eslint/no-unused-vars
+  51:13  error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+G:\urekha\urekha\urekha\components\auth\CountryPhoneInput.tsx:51:13
+  49 |             }, 100);
+  50 |         } else {
+> 51 |             setSearchQuery(""); // Reset search when closed
+     |             ^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  52 |         }
+  53 |     }, [isOpen]);
+  54 |  react-hooks/set-state-in-effect
+
+G:\urekha\urekha\urekha\components\auth\PasswordStrengthIndicator.tsx
+  5:17  warning  'X' is defined but never used       @typescript-eslint/no-unused-vars
+  6:10  warning  'motion' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\urekha\urekha\urekha\components\hero\FutureHero.tsx
+    3:37  warning  'useRef' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/no-unused-vars
+   79:22  error    Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\hero\FutureHero.tsx:79:22
+  77 |             className="absolute rounded-full bg-white opacity-40"
+  78 |             style={{
+> 79 |               width: Math.random() * 2 + "px",
+     |                      ^^^^^^^^^^^^^ Cannot call impure function
+  80 |               height: Math.random() * 2 + "px",
+  81 |               left: Math.random() * 100 + "%",
+  82 |               top: Math.random() * 100 + "%",                                                    react-hooks/purity
+   80:23  error    Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\hero\FutureHero.tsx:80:23
+  78 |             style={{
+  79 |               width: Math.random() * 2 + "px",
+> 80 |               height: Math.random() * 2 + "px",
+     |                       ^^^^^^^^^^^^^ Cannot call impure function
+  81 |               left: Math.random() * 100 + "%",
+  82 |               top: Math.random() * 100 + "%",
+  83 |               animation: `twinkle ${2 + Math.random() * 3}s ease-in-out infinite`,                                  react-hooks/purity
+   81:21  error    Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\hero\FutureHero.tsx:81:21
+  79 |               width: Math.random() * 2 + "px",
+  80 |               height: Math.random() * 2 + "px",
+> 81 |               left: Math.random() * 100 + "%",
+     |                     ^^^^^^^^^^^^^ Cannot call impure function
+  82 |               top: Math.random() * 100 + "%",
+  83 |               animation: `twinkle ${2 + Math.random() * 3}s ease-in-out infinite`,
+  84 |               animationDelay: Math.random() * 5 + "s",  react-hooks/purity
+   82:20  error    Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\hero\FutureHero.tsx:82:20
+  80 |               height: Math.random() * 2 + "px",
+  81 |               left: Math.random() * 100 + "%",
+> 82 |               top: Math.random() * 100 + "%",
+     |                    ^^^^^^^^^^^^^ Cannot call impure function
+  83 |               animation: `twinkle ${2 + Math.random() * 3}s ease-in-out infinite`,
+  84 |               animationDelay: Math.random() * 5 + "s",
+  85 |             }}                                   react-hooks/purity
+   83:41  error    Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\hero\FutureHero.tsx:83:41
+  81 |               left: Math.random() * 100 + "%",
+  82 |               top: Math.random() * 100 + "%",
+> 83 |               animation: `twinkle ${2 + Math.random() * 3}s ease-in-out infinite`,
+     |                                         ^^^^^^^^^^^^^ Cannot call impure function
+  84 |               animationDelay: Math.random() * 5 + "s",
+  85 |             }}
+  86 |           />                                                 react-hooks/purity
+   84:31  error    Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\hero\FutureHero.tsx:84:31
+  82 |               top: Math.random() * 100 + "%",
+  83 |               animation: `twinkle ${2 + Math.random() * 3}s ease-in-out infinite`,
+> 84 |               animationDelay: Math.random() * 5 + "s",
+     |                               ^^^^^^^^^^^^^ Cannot call impure function
+  85 |             }}
+  86 |           />
+  87 |         ))}                                                                                              react-hooks/purity
+  156:61  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-explicit-any
+  177:52  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-explicit-any
+  186:62  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-explicit-any
+  196:60  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-explicit-any
+  467:65  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @typescript-eslint/no-explicit-any
+
+G:\urekha\urekha\urekha\components\hero\HeroSequence.tsx
+  13:13  warning  'isTransitioning' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+G:\urekha\urekha\urekha\components\hero\HeroSlider.tsx
+   54:10  warning  'isPaused' is assigned a value but never used                                                                  @typescript-eslint/no-unused-vars
+  115:9   warning  'togglePause' is assigned a value but never used                                                               @typescript-eslint/no-unused-vars
+  132:6   warning  React Hook useEffect has a missing dependency: 'handleNext'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  140:57  error    Unexpected any. Specify a different type                                                                       @typescript-eslint/no-explicit-any
+  145:57  error    Unexpected any. Specify a different type                                                                       @typescript-eslint/no-explicit-any
+  171:64  error    Unexpected any. Specify a different type                                                                       @typescript-eslint/no-explicit-any
+  241:42  error    Unexpected any. Specify a different type                                                                       @typescript-eslint/no-explicit-any
+  387:71  error    Unexpected any. Specify a different type                                                                       @typescript-eslint/no-explicit-any
+
+G:\urekha\urekha\urekha\components\hero\KundliBg.tsx
+  206:22  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\hero\KundliBg.tsx:206:22
+  204 |       Array.from({ length: count }, (_, i) => ({
+  205 |         angle: (i / count) * Math.PI * 2,
+> 206 |         size: 0.04 + Math.random() * 0.06,
+      |                      ^^^^^^^^^^^^^ Cannot call impure function
+  207 |         speed: 0.15 + Math.random() * 0.1,
+  208 |         orbitRadius: radius + (Math.random() - 0.5) * 0.8,
+  209 |       })),              react-hooks/purity
+  207:23  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\hero\KundliBg.tsx:207:23
+  205 |         angle: (i / count) * Math.PI * 2,
+  206 |         size: 0.04 + Math.random() * 0.06,
+> 207 |         speed: 0.15 + Math.random() * 0.1,
+      |                       ^^^^^^^^^^^^^ Cannot call impure function
+  208 |         orbitRadius: radius + (Math.random() - 0.5) * 0.8,
+  209 |       })),
+  210 |     [count, radius],                                         react-hooks/purity
+  208:32  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\hero\KundliBg.tsx:208:32
+  206 |         size: 0.04 + Math.random() * 0.06,
+  207 |         speed: 0.15 + Math.random() * 0.1,
+> 208 |         orbitRadius: radius + (Math.random() - 0.5) * 0.8,
+      |                                ^^^^^^^^^^^^^ Cannot call impure function
+  209 |       })),
+  210 |     [count, radius],
+  211 |   );                                                                     react-hooks/purity
+  278:21  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\hero\KundliBg.tsx:278:21
+  276 |     const pos = new Float32Array(count * 3);
+  277 |     for (let i = 0; i < count; i++) {
+> 278 |       const angle = Math.random() * Math.PI * 2;
+      |                     ^^^^^^^^^^^^^ Cannot call impure function
+  279 |       const r = 4 + Math.random() * 6;
+  280 |       pos[i * 3] = Math.cos(angle) * r;
+  281 |       pos[i * 3 + 1] = Math.sin(angle) * r;       react-hooks/purity
+  279:21  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\hero\KundliBg.tsx:279:21
+  277 |     for (let i = 0; i < count; i++) {
+  278 |       const angle = Math.random() * Math.PI * 2;
+> 279 |       const r = 4 + Math.random() * 6;
+      |                     ^^^^^^^^^^^^^ Cannot call impure function
+  280 |       pos[i * 3] = Math.cos(angle) * r;
+  281 |       pos[i * 3 + 1] = Math.sin(angle) * r;
+  282 |       pos[i * 3 + 2] = (Math.random() - 0.5) * 2;  react-hooks/purity
+  282:25  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\hero\KundliBg.tsx:282:25
+  280 |       pos[i * 3] = Math.cos(angle) * r;
+  281 |       pos[i * 3 + 1] = Math.sin(angle) * r;
+> 282 |       pos[i * 3 + 2] = (Math.random() - 0.5) * 2;
+      |                         ^^^^^^^^^^^^^ Cannot call impure function
+  283 |     }
+  284 |     return pos;
+  285 |   }, [count]);                                                                                       react-hooks/purity
+
+G:\urekha\urekha\urekha\components\hero\ModernHero.tsx
+   54:10  warning  'isPaused' is assigned a value but never used                                                                  @typescript-eslint/no-unused-vars
+  115:9   warning  'togglePause' is assigned a value but never used                                                               @typescript-eslint/no-unused-vars
+  132:6   warning  React Hook useEffect has a missing dependency: 'handleNext'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  139:57  error    Unexpected any. Specify a different type                                                                       @typescript-eslint/no-explicit-any
+  143:57  error    Unexpected any. Specify a different type                                                                       @typescript-eslint/no-explicit-any
+  169:64  error    Unexpected any. Specify a different type                                                                       @typescript-eslint/no-explicit-any
+  239:42  error    Unexpected any. Specify a different type                                                                       @typescript-eslint/no-explicit-any
+  385:71  error    Unexpected any. Specify a different type                                                                       @typescript-eslint/no-explicit-any
+
+G:\urekha\urekha\urekha\components\hero\PlanetaryBg.tsx
+   32:21  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\hero\PlanetaryBg.tsx:32:21
+  30 |     const pos = new Float32Array(count * 3);
+  31 |     for (let i = 0; i < count; i++) {
+> 32 |       const theta = Math.random() * Math.PI * 2;
+     |                     ^^^^^^^^^^^^^ Cannot call impure function
+  33 |       const phi = Math.acos(2 * Math.random() - 1);
+  34 |       const r = 30 + Math.random() * 70;
+  35 |       pos[i * 3] = r * Math.sin(phi) * Math.cos(theta);                             react-hooks/purity
+   33:33  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\hero\PlanetaryBg.tsx:33:33
+  31 |     for (let i = 0; i < count; i++) {
+  32 |       const theta = Math.random() * Math.PI * 2;
+> 33 |       const phi = Math.acos(2 * Math.random() - 1);
+     |                                 ^^^^^^^^^^^^^ Cannot call impure function
+  34 |       const r = 30 + Math.random() * 70;
+  35 |       pos[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+  36 |       pos[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);  react-hooks/purity
+   34:22  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\hero\PlanetaryBg.tsx:34:22
+  32 |       const theta = Math.random() * Math.PI * 2;
+  33 |       const phi = Math.acos(2 * Math.random() - 1);
+> 34 |       const r = 30 + Math.random() * 70;
+     |                      ^^^^^^^^^^^^^ Cannot call impure function
+  35 |       pos[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+  36 |       pos[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+  37 |       pos[i * 3 + 2] = r * Math.cos(phi);         react-hooks/purity
+  366:20  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\hero\PlanetaryBg.tsx:366:20
+  364 |     () =>
+  365 |       Array.from({ length: count }, () => ({
+> 366 |         speed: 3 + Math.random() * 5,
+      |                    ^^^^^^^^^^^^^ Cannot call impure function
+  367 |         offset: Math.random() * 100,
+  368 |         startY: (Math.random() - 0.5) * 15,
+  369 |         startZ: -10 + Math.random() * 20,                                                                                       react-hooks/purity
+  367:17  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\hero\PlanetaryBg.tsx:367:17
+  365 |       Array.from({ length: count }, () => ({
+  366 |         speed: 3 + Math.random() * 5,
+> 367 |         offset: Math.random() * 100,
+      |                 ^^^^^^^^^^^^^ Cannot call impure function
+  368 |         startY: (Math.random() - 0.5) * 15,
+  369 |         startZ: -10 + Math.random() * 20,
+  370 |         angle: (Math.random() - 0.5) * 0.5,                                                        react-hooks/purity
+  368:18  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\hero\PlanetaryBg.tsx:368:18
+  366 |         speed: 3 + Math.random() * 5,
+  367 |         offset: Math.random() * 100,
+> 368 |         startY: (Math.random() - 0.5) * 15,
+      |                  ^^^^^^^^^^^^^ Cannot call impure function
+  369 |         startZ: -10 + Math.random() * 20,
+  370 |         angle: (Math.random() - 0.5) * 0.5,
+  371 |       })),                                                                                         react-hooks/purity
+  369:23  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\hero\PlanetaryBg.tsx:369:23
+  367 |         offset: Math.random() * 100,
+  368 |         startY: (Math.random() - 0.5) * 15,
+> 369 |         startZ: -10 + Math.random() * 20,
+      |                       ^^^^^^^^^^^^^ Cannot call impure function
+  370 |         angle: (Math.random() - 0.5) * 0.5,
+  371 |       })),
+  372 |     [count],                                                                                                             react-hooks/purity
+  370:17  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\hero\PlanetaryBg.tsx:370:17
+  368 |         startY: (Math.random() - 0.5) * 15,
+  369 |         startZ: -10 + Math.random() * 20,
+> 370 |         angle: (Math.random() - 0.5) * 0.5,
+      |                 ^^^^^^^^^^^^^ Cannot call impure function
+  371 |       })),
+  372 |     [count],
+  373 |   );                                                                                                                                                   react-hooks/purity
+  384:63  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/no-explicit-any
+  406:20  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\hero\PlanetaryBg.tsx:406:20
+  404 |     () =>
+  405 |       Array.from({ length: count }, () => ({
+> 406 |         speed: 8 + Math.random() * 12,
+      |                    ^^^^^^^^^^^^^ Cannot call impure function
+  407 |         offset: Math.random() * 40,
+  408 |         y: 5 + Math.random() * 10,
+  409 |         z: -5 + Math.random() * 10,                                                                                                      react-hooks/purity
+  407:17  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\hero\PlanetaryBg.tsx:407:17
+  405 |       Array.from({ length: count }, () => ({
+  406 |         speed: 8 + Math.random() * 12,
+> 407 |         offset: Math.random() * 40,
+      |                 ^^^^^^^^^^^^^ Cannot call impure function
+  408 |         y: 5 + Math.random() * 10,
+  409 |         z: -5 + Math.random() * 10,
+  410 |         angle: -0.3 - Math.random() * 0.4,                                                                        react-hooks/purity
+  408:16  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\hero\PlanetaryBg.tsx:408:16
+  406 |         speed: 8 + Math.random() * 12,
+  407 |         offset: Math.random() * 40,
+> 408 |         y: 5 + Math.random() * 10,
+      |                ^^^^^^^^^^^^^ Cannot call impure function
+  409 |         z: -5 + Math.random() * 10,
+  410 |         angle: -0.3 - Math.random() * 0.4,
+  411 |       })),                                                                                                           react-hooks/purity
+  409:17  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\hero\PlanetaryBg.tsx:409:17
+  407 |         offset: Math.random() * 40,
+  408 |         y: 5 + Math.random() * 10,
+> 409 |         z: -5 + Math.random() * 10,
+      |                 ^^^^^^^^^^^^^ Cannot call impure function
+  410 |         angle: -0.3 - Math.random() * 0.4,
+  411 |       })),
+  412 |     [count],                                                                                                                                    react-hooks/purity
+  410:23  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\hero\PlanetaryBg.tsx:410:23
+  408 |         y: 5 + Math.random() * 10,
+  409 |         z: -5 + Math.random() * 10,
+> 410 |         angle: -0.3 - Math.random() * 0.4,
+      |                       ^^^^^^^^^^^^^ Cannot call impure function
+  411 |       })),
+  412 |     [count],
+  413 |   );                                                                                                                                                             react-hooks/purity
+  424:55  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/no-explicit-any
+
+G:\urekha\urekha\urekha\components\home\DailyPanchang.tsx
+    3:38  warning  'Suspense' is defined but never used                                                                                                                                                                                                                                                     @typescript-eslint/no-unused-vars
+    3:48  warning  'lazy' is defined but never used                                                                                                                                                                                                                                                         @typescript-eslint/no-unused-vars
+  127:9   warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  137:9   warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+G:\urekha\urekha\urekha\components\home\ReportBook.tsx
+   7:10  warning  'cn' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           @typescript-eslint/no-unused-vars
+  25:17  error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+G:\urekha\urekha\urekha\components\home\ReportBook.tsx:25:17
+  23 |
+  24 |             if (status === 'idle') {
+> 25 |                 setStatus('open');
+     |                 ^^^^^^^^^ Avoid calling setState() directly within an effect
+  26 |
+  27 |                 // Timer 1: Start Flipping after 1s
+  28 |                 const t1 = setTimeout(() => {  react-hooks/set-state-in-effect
+
+G:\urekha\urekha\urekha\components\home\SacredGeometryBg.tsx
+   25:34  error    Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\home\SacredGeometryBg.tsx:25:34
+  23 |   // Generate a random small constellation (3-6 connected stars)
+  24 |   const { stars, lines } = useMemo(() => {
+> 25 |     const count = 3 + Math.floor(Math.random() * 4);
+     |                                  ^^^^^^^^^^^^^ Cannot call impure function
+  26 |     const pts: [number, number][] = [];
+  27 |     for (let i = 0; i < count; i++) {
+  28 |       pts.push([                                                                                react-hooks/purity
+   29:10  error    Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\home\SacredGeometryBg.tsx:29:10
+  27 |     for (let i = 0; i < count; i++) {
+  28 |       pts.push([
+> 29 |         (Math.random() - 0.5) * 2 * scale,
+     |          ^^^^^^^^^^^^^ Cannot call impure function
+  30 |         (Math.random() - 0.5) * 2 * scale,
+  31 |       ]);
+  32 |     }                                                                                                                                                                                                           react-hooks/purity
+   30:10  error    Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\home\SacredGeometryBg.tsx:30:10
+  28 |       pts.push([
+  29 |         (Math.random() - 0.5) * 2 * scale,
+> 30 |         (Math.random() - 0.5) * 2 * scale,
+     |          ^^^^^^^^^^^^^ Cannot call impure function
+  31 |       ]);
+  32 |     }
+  33 |     // Connect sequentially + one extra random connection                                                                                                                                                                                       react-hooks/purity
+   44:29  error    Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\home\SacredGeometryBg.tsx:44:29
+  42 |     // Extra connection from last to a random earlier star
+  43 |     if (pts.length > 2) {
+> 44 |       const ri = Math.floor(Math.random() * (pts.length - 2));
+     |                             ^^^^^^^^^^^^^ Cannot call impure function
+  45 |       const g = new THREE.BufferGeometry().setFromPoints([
+  46 |         new THREE.Vector3(pts[pts.length - 1][0], pts[pts.length - 1][1], 0),
+  47 |         new THREE.Vector3(pts[ri][0], pts[ri][1], 0),  react-hooks/purity
+   87:22  warning  'sizes' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      @typescript-eslint/no-unused-vars
+   91:21  error    Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\home\SacredGeometryBg.tsx:91:21
+  89 |     const sz = new Float32Array(count);
+  90 |     for (let i = 0; i < count; i++) {
+> 91 |       pos[i * 3] = (Math.random() - 0.5) * 24;
+     |                     ^^^^^^^^^^^^^ Cannot call impure function
+  92 |       pos[i * 3 + 1] = (Math.random() - 0.5) * 14;
+  93 |       pos[i * 3 + 2] = (Math.random() - 0.5) * 4;
+  94 |       sz[i] = 0.03 + Math.random() * 0.08;                                                                                react-hooks/purity
+   92:25  error    Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\home\SacredGeometryBg.tsx:92:25
+  90 |     for (let i = 0; i < count; i++) {
+  91 |       pos[i * 3] = (Math.random() - 0.5) * 24;
+> 92 |       pos[i * 3 + 1] = (Math.random() - 0.5) * 14;
+     |                         ^^^^^^^^^^^^^ Cannot call impure function
+  93 |       pos[i * 3 + 2] = (Math.random() - 0.5) * 4;
+  94 |       sz[i] = 0.03 + Math.random() * 0.08;
+  95 |     }                                                                                                              react-hooks/purity
+   93:25  error    Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\home\SacredGeometryBg.tsx:93:25
+  91 |       pos[i * 3] = (Math.random() - 0.5) * 24;
+  92 |       pos[i * 3 + 1] = (Math.random() - 0.5) * 14;
+> 93 |       pos[i * 3 + 2] = (Math.random() - 0.5) * 4;
+     |                         ^^^^^^^^^^^^^ Cannot call impure function
+  94 |       sz[i] = 0.03 + Math.random() * 0.08;
+  95 |     }
+  96 |     return { positions: pos, sizes: sz };                                                                                                          react-hooks/purity
+   94:22  error    Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\home\SacredGeometryBg.tsx:94:22
+  92 |       pos[i * 3 + 1] = (Math.random() - 0.5) * 14;
+  93 |       pos[i * 3 + 2] = (Math.random() - 0.5) * 4;
+> 94 |       sz[i] = 0.03 + Math.random() * 0.08;
+     |                      ^^^^^^^^^^^^^ Cannot call impure function
+  95 |     }
+  96 |     return { positions: pos, sizes: sz };
+  97 |   }, [count]);                                                                                                                                             react-hooks/purity
+  122:13  error    Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\home\SacredGeometryBg.tsx:122:13
+  120 |     () =>
+  121 |       Array.from({ length: count }, () => ({
+> 122 |         x: (Math.random() - 0.5) * 20,
+      |             ^^^^^^^^^^^^^ Cannot call impure function
+  123 |         y: (Math.random() - 0.5) * 12,
+  124 |         size: 0.05 + Math.random() * 0.08,
+  125 |         pulseSpeed: 0.5 + Math.random() * 2,                                                                                                                                react-hooks/purity
+  123:13  error    Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\home\SacredGeometryBg.tsx:123:13
+  121 |       Array.from({ length: count }, () => ({
+  122 |         x: (Math.random() - 0.5) * 20,
+> 123 |         y: (Math.random() - 0.5) * 12,
+      |             ^^^^^^^^^^^^^ Cannot call impure function
+  124 |         size: 0.05 + Math.random() * 0.08,
+  125 |         pulseSpeed: 0.5 + Math.random() * 2,
+  126 |         pulseOffset: Math.random() * Math.PI * 2,                                                                                        react-hooks/purity
+  124:22  error    Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\home\SacredGeometryBg.tsx:124:22
+  122 |         x: (Math.random() - 0.5) * 20,
+  123 |         y: (Math.random() - 0.5) * 12,
+> 124 |         size: 0.05 + Math.random() * 0.08,
+      |                      ^^^^^^^^^^^^^ Cannot call impure function
+  125 |         pulseSpeed: 0.5 + Math.random() * 2,
+  126 |         pulseOffset: Math.random() * Math.PI * 2,
+  127 |       })),                                                                                                                 react-hooks/purity
+  125:27  error    Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\home\SacredGeometryBg.tsx:125:27
+  123 |         y: (Math.random() - 0.5) * 12,
+  124 |         size: 0.05 + Math.random() * 0.08,
+> 125 |         pulseSpeed: 0.5 + Math.random() * 2,
+      |                           ^^^^^^^^^^^^^ Cannot call impure function
+  126 |         pulseOffset: Math.random() * Math.PI * 2,
+  127 |       })),
+  128 |     [count],                                                                                                                                      react-hooks/purity
+  126:22  error    Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\home\SacredGeometryBg.tsx:126:22
+  124 |         size: 0.05 + Math.random() * 0.08,
+  125 |         pulseSpeed: 0.5 + Math.random() * 2,
+> 126 |         pulseOffset: Math.random() * Math.PI * 2,
+      |                      ^^^^^^^^^^^^^ Cannot call impure function
+  127 |       })),
+  128 |     [count],
+  129 |   );                                                                                                                                                                             react-hooks/purity
+  138:7   warning  Expected an assignment or function call and instead saw an expression                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           @typescript-eslint/no-unused-expressions
+
+G:\urekha\urekha\urekha\components\home\ServicesSection.tsx
+   82:19  error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+G:\urekha\urekha\urekha\components\home\ServicesSection.tsx:82:19
+  80 | }) => {
+  81 |   const [mounted, setMounted] = useState(false);
+> 82 |   useEffect(() => setMounted(true), []);
+     |                   ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  83 |
+  84 |   // Different parallax speeds for depth layers
+  85 |   const layer1Y = useTransform(scrollYProgress, [0, 1], [0, -120]);  react-hooks/set-state-in-effect
+  238:37  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     @typescript-eslint/no-explicit-any
+  460:9   warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      @next/next/no-img-element
+
+G:\urekha\urekha\urekha\components\home\SystemsGrid.tsx
+    3:10  warning  'useEffect' is defined but never used            @typescript-eslint/no-unused-vars
+  144:9   warning  'overlayRef' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  145:9   warning  'itemsRef' is assigned a value but never used    @typescript-eslint/no-unused-vars
+
+G:\urekha\urekha\urekha\components\layout\Footer.tsx
+   7:3   warning  'Facebook' is defined but never used  @typescript-eslint/no-unused-vars
+  12:10  warning  'cn' is defined but never used        @typescript-eslint/no-unused-vars
+
+G:\urekha\urekha\urekha\components\layout\FooterMoon.tsx
+  13:21  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\layout\FooterMoon.tsx:13:21
+  11 |     for (let i = 0; i < count; i++) {
+  12 |       // Create a sphere of stars around the camera
+> 13 |       const theta = Math.random() * Math.PI * 2;
+     |                     ^^^^^^^^^^^^^ Cannot call impure function
+  14 |       const phi = Math.acos(2 * Math.random() - 1);
+  15 |       const r = 10 + Math.random() * 20; // Distance from center
+  16 |       pos[i * 3] = r * Math.sin(phi) * Math.cos(theta);                                    react-hooks/purity
+  14:33  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\layout\FooterMoon.tsx:14:33
+  12 |       // Create a sphere of stars around the camera
+  13 |       const theta = Math.random() * Math.PI * 2;
+> 14 |       const phi = Math.acos(2 * Math.random() - 1);
+     |                                 ^^^^^^^^^^^^^ Cannot call impure function
+  15 |       const r = 10 + Math.random() * 20; // Distance from center
+  16 |       pos[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+  17 |       pos[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);  react-hooks/purity
+  15:22  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+G:\urekha\urekha\urekha\components\layout\FooterMoon.tsx:15:22
+  13 |       const theta = Math.random() * Math.PI * 2;
+  14 |       const phi = Math.acos(2 * Math.random() - 1);
+> 15 |       const r = 10 + Math.random() * 20; // Distance from center
+     |                      ^^^^^^^^^^^^^ Cannot call impure function
+  16 |       pos[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+  17 |       pos[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+  18 |       pos[i * 3 + 2] = r * Math.cos(phi);                       react-hooks/purity
+
+G:\urekha\urekha\urekha\components\layout\Navbar.tsx
+   56:9   warning  'isHomePage' is assigned a value but never used                                                                                                @typescript-eslint/no-unused-vars
+  115:6   warning  React Hook useEffect has missing dependencies: 'initialIsAuthenticated' and 'initialRole'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  189:9   warning  'ivoryColorClass' is assigned a value but never used                                                                                           @typescript-eslint/no-unused-vars
+  197:11  error    Unexpected any. Specify a different type                                                                                                       @typescript-eslint/no-explicit-any
+  318:48  error    Unexpected any. Specify a different type                                                                                                       @typescript-eslint/no-explicit-any
+  343:48  error    Unexpected any. Specify a different type                                                                                                       @typescript-eslint/no-explicit-any
+  367:48  error    Unexpected any. Specify a different type                                                                                                       @typescript-eslint/no-explicit-any
+  374:46  error    Unexpected any. Specify a different type                                                                                                       @typescript-eslint/no-explicit-any
+  385:48  error    Unexpected any. Specify a different type                                                                                                       @typescript-eslint/no-explicit-any
+  403:46  error    Unexpected any. Specify a different type                                                                                                       @typescript-eslint/no-explicit-any
+
+G:\urekha\urekha\urekha\components\newsletter\Newsletter.tsx
+   9:46  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      @typescript-eslint/no-explicit-any
+  35:5   error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+G:\urekha\urekha\urekha\components\newsletter\Newsletter.tsx:35:5
+  33 |       };
+  34 |     });
+> 35 |     setParticles(generated);
+     |     ^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  36 |   }, []);
+  37 |
+  38 |   if (particles.length === 0) return null;  react-hooks/set-state-in-effect
+
+G:\urekha\urekha\urekha\components\profile\LocationUpdateModal.tsx
+  141:14  warning  'err' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\urekha\urekha\urekha\components\profile\ProfileLogoutButton.tsx
+  4:18  warning  'AlertTriangle' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\urekha\urekha\urekha\components\social\SocialMediaGallery.tsx
+  4:21  warning  'Sparkles' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\urekha\urekha\urekha\components\ui\ThreeBackground.tsx
+   13:9  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+G:\urekha\urekha\urekha\components\ui\ThreeBackground.tsx:13:9
+  11 |
+  12 |     useEffect(() => {
+> 13 |         setMounted(true);
+     |         ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  14 |     }, []);
+  15 |
+  16 |     useEffect(() => {  react-hooks/set-state-in-effect
+   27:9  error  'scene' is never reassigned. Use 'const' instead                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            prefer-const
+   30:9  error  'camera' is never reassigned. Use 'const' instead                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           prefer-const
+   33:9  error  'renderer' is never reassigned. Use 'const' instead                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         prefer-const
+  159:9  error  'material' is never reassigned. Use 'const' instead                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         prefer-const
+  169:9  error  'plane' is never reassigned. Use 'const' instead                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            prefer-const
+
+G:\urekha\urekha\urekha\hooks\use-canvas-sequence.ts
+  1:21  warning  'useRef' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\urekha\urekha\urekha\tmp_auth_copy.js
+  1:12  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  2:14  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+G:\urekha\urekha\urekha\utils\supabase\proxy.ts
+  24:48  warning  'options' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\urekha\urekha\urekha\utils\supabase\server.ts
+  1:35  warning  'CookieOptions' is defined but never used  @typescript-eslint/no-unused-vars
+
+Γ£û 184 problems (122 errors, 62 warnings)
+  1 error and 0 warnings potentially fixable with the `--fix` option.
+

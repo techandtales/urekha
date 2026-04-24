@@ -1,0 +1,112 @@
+{
+  "name": "types",
+  "type": "folder",
+  "description": "Comprehensive TypeScript type definitions for the entire platform, categorized by domain (Horoscope, KP Astrology, Panchang, Auth).",
+  "symbol": ["type-system", "interfaces"],
+  "subfolders": [
+    {
+      "name": "horoscope",
+      "type": "folder",
+      "description": "Types related to planetary positions, divisional charts, dasha periods, and birth charts.",
+      "symbol": ["horoscope-types"],
+      "subfiles": [
+        {
+          "name": "ascendantReport.d.ts",
+          "type": "file",
+          "description": "Interface for the rising sign analysis and its astrological implications.",
+          "symbol": ["ascendant", "personality"]
+        },
+        {
+          "name": "asthakVarga.d.ts",
+          "type": "file",
+          "description": "System for evaluating planetary strength through the Ashtakvarga points system.",
+          "symbol": ["planetary-strength"]
+        },
+        {
+          "name": "binnashthakVarga.d.ts",
+          "type": "file",
+          "description": "Individual planetary strength points in the fractional Ashtakvarga system.",
+          "symbol": ["bhinnashtakvarga"]
+        },
+        {
+          "name": "divisionalChart.d.ts",
+          "type": "file",
+          "description": "Definitions for various Varga charts (D1, D9, D10, etc.) for deeper life analysis.",
+          "symbol": ["varga-charts", "divisional-analysis"]
+        },
+        {
+          "name": "palnetDetails.d.ts",
+          "type": "file",
+          "description": "Core data structure for planetary positions (Longitude, Retrogression, Nakshatra).",
+          "symbol": ["planetary-data"]
+        }
+      ]
+    },
+    {
+      "name": "kpAstrology",
+      "type": "folder",
+      "description": "Types for Krishnamurti Paddhati (KP) system including cusps and significators.",
+      "symbol": ["kp-types"],
+      "subfiles": [
+        {
+          "name": "kpCuspsDetails.d.ts",
+          "type": "file",
+          "description": "Definitions for Placidus house cusp positions used in KP Astrology.",
+          "symbol": ["house-cusps"]
+        },
+        {
+          "name": "kpHouseSignificators.d.ts",
+          "type": "file",
+          "description": "Mapping of which planets signify which houses in the KP system.",
+          "symbol": ["significators"]
+        },
+        {
+          "name": "kpPlanetDetails.d.ts",
+          "type": "file",
+          "description": "KP-specific planetary data including Sub-lords and Constellation lords.",
+          "symbol": ["kp-planets"]
+        },
+        {
+          "name": "kpPlanetSignifications.d.ts",
+          "type": "file",
+          "description": "The logic mapping planets to their functional strength in KP scripts.",
+          "symbol": ["signification-logic"]
+        }
+      ]
+    },
+    {
+      "name": "panchang",
+      "type": "folder",
+      "description": "Daily astrological calendar types (Tithi, Nakshatra, Yoga, Karana, Choghadiya).",
+      "symbol": ["panchang-types"],
+      "subfiles": [
+        {
+          "name": "choghadiya.d.ts",
+          "type": "file",
+          "description": "Interface for day/night auspicious time segments (Muhurats).",
+          "symbol": ["muhurat"]
+        },
+        {
+          "name": "hora.d.ts",
+          "type": "file",
+          "description": "Definitions for planetary hours (Hora) and their respective rulers.",
+          "symbol": ["hora-lords"]
+        },
+        {
+          "name": "panchang.d.ts",
+          "type": "file",
+          "description": "The primary structure combining all five elements of the Vedic calendar.",
+          "symbol": ["vedic-calendar"]
+        }
+      ]
+    }
+  ],
+  "subfiles": [
+    {
+      "name": "auth.ts",
+      "type": "file",
+      "description": "User and session type definitions for authentication workflows including RBAC roles.",
+      "symbol": ["auth-types", "user-schema"]
+    }
+  ]
+}

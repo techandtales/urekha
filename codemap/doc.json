@@ -1,0 +1,26 @@
+{
+  "name": "doc",
+  "type": "folder",
+  "description": "Project documentation folder containing architecture guides, integration manuals, and prompt engineering specifications.",
+  "symbol": ["documentation", "guides"],
+  "subfiles": [
+    {
+      "name": "caching-architecture.md",
+      "type": "file",
+      "description": "Documentation for the Redis/MongoDB caching layer used for Kundli summaries.",
+      "symbol": ["backend-docs"]
+    },
+    {
+      "name": "frontend-integration-guide.md",
+      "type": "file",
+      "description": "Manual for connecting the React frontend with the backend node services.",
+      "symbol": ["dev-manual"]
+    },
+    {
+      "name": "pricing_plan_prompts.csv",
+      "type": "file",
+      "description": "Source data for AI prompts mapped to different user subscription levels.",
+      "symbol": ["ai-prompts"]
+    }
+  ]
+}

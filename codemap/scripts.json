@@ -1,0 +1,8 @@
+{
+  "name": "scripts",
+  "type": "folder",
+  "description": "Reserved directory for infrastructure-as-code, migration scripts, and other automation tasks related to the frontend environment.",
+  "symbol": ["dev-ops", "scripts"],
+  "subfiles": [],
+  "subfolders": []
+}
