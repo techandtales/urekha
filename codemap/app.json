@@ -98,7 +98,29 @@
           "name": "auth",
           "type": "folder",
           "subfolders": [{ "name": "confirm", "type": "folder", "subfiles": [{ "name": "route.ts", "type": "file" }] }]
+        },
+        {
+          "name": "pre-order",
+          "type": "folder",
+          "description": "Endpoints for managing pre-orders in MongoDB.",
+          "subfiles": [{ "name": "route.ts", "type": "file", "description": "Handles POST (save) and GET (list) for pre-orders." }]
         }
+      ]
+    },
+    {
+      "name": "pre-order",
+      "type": "folder",
+      "description": "Public pre-order form with Google Form UI.",
+      "subfiles": [{ "name": "page.tsx", "type": "file", "description": "Interactive birth details form for Agent-1200 plan." }]
+    },
+    {
+      "name": "admin",
+      "type": "folder",
+      "description": "Administrative dashboard routes.",
+      "subfolders": [
+        { "name": "dashboard", "type": "folder", "subfiles": [{ "name": "page.tsx", "type": "file" }] },
+        { "name": "users", "type": "folder", "subfiles": [{ "name": "page.tsx", "type": "file" }] },
+        { "name": "pre-orders", "type": "folder", "subfiles": [{ "name": "page.tsx", "type": "file", "description": "Table view of all MongoDB pre-orders." }] }
       ]
     },
     {

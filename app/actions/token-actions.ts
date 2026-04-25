@@ -2,6 +2,7 @@
 
 import { createClient } from "@/utils/supabase/server";
 import { revalidatePath } from "next/cache";
+import { getMongoDb } from "@/lib/mongodb";
 
 /**
  * Agent requests tokens.
@@ -458,3 +459,32 @@ export async function getAgentTokenHistory() {
   if (error) return { success: false, error: error.message };
   return { success: true, data };
 }
+
+/**
+ * Admin: Get all pre-orders from MongoDB
+ */
+export async function getPreOrders() {
+  const adminCheck = await isAdmin();
+  if (!adminCheck.isAdmin) return { success: false, error: "Unauthorized" };
+
+  try {
+    const db = await getMongoDb();
+    const preOrders = await db.collection("pre_orders")
+      .find({})
+      .sort({ createdAt: -1 })
+      .toArray();
+
+    // Convert MongoDB objects to plain JS objects for Next.js server components
+    const serializedPreOrders = preOrders.map(order => ({
+      ...order,
+      _id: order._id.toString(),
+      createdAt: order.createdAt instanceof Date ? order.createdAt.toISOString() : order.createdAt
+    }));
+
+    return { success: true, data: serializedPreOrders };
+  } catch (error: any) {
+    console.error("Error fetching pre-orders:", error);
+    return { success: false, error: error.message };
+  }
+}
+

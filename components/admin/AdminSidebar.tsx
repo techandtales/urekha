@@ -47,6 +47,7 @@ export function AdminSidebar({
     { name: "Token Management", href: "/admin/tokens/manage", icon: Coins },
     { name: "Token Requests", href: "/admin/tokens/requests", icon: BellDot },
     { name: "Contact Messages", href: "/admin/messages", icon: Mail },
+    { name: "Pre-Orders", href: "/admin/pre-orders", icon: Clock },
     { name: "AI Settings", href: "/admin/ai-settings", icon: Bot },
   ];
 

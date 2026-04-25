@@ -33,6 +33,11 @@ export const metadata: Metadata = {
   title: "Urekha | AI-Powered Astrology Intelligence",
   description:
     "Transform precise birth data into deeply structured, long-form astrological reports.",
+  icons: {
+    icon: "/logo.svg",
+    shortcut: "/logo.svg",
+    apple: "/logo.svg",
+  },
 };
 
 import { GoogleOAuthProvider } from "@react-oauth/google";

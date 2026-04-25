@@ -1,7 +1,22 @@
 "use client";
 
 import { useState } from "react";
-import { User, MapPin, Clock, ShieldCheck, Mail, Phone, Calendar, Sparkles, Orbit, PenLine, Check, X, Loader2, Navigation } from "lucide-react";
+import {
+  User,
+  MapPin,
+  Clock,
+  ShieldCheck,
+  Mail,
+  Phone,
+  Calendar,
+  Sparkles,
+  Orbit,
+  PenLine,
+  Check,
+  X,
+  Loader2,
+  Navigation,
+} from "lucide-react";
 import LocationUpdateModal from "@/components/profile/LocationUpdateModal";
 import { ModernAuthInput } from "@/components/auth/ModernAuthInput";
 import { completeUserProfile } from "@/app/auth/actions";
@@ -12,7 +27,10 @@ interface ProfileDataEditorProps {
   userEmail: string;
 }
 
-export default function ProfileDataEditor({ userData, userEmail }: ProfileDataEditorProps) {
+export default function ProfileDataEditor({
+  userData,
+  userEmail,
+}: ProfileDataEditorProps) {
   const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -26,8 +44,12 @@ export default function ProfileDataEditor({ userData, userEmail }: ProfileDataEd
   const [country, setCountry] = useState(userData?.country || "");
   const [state, setState] = useState(userData?.state || "");
   const [city, setCity] = useState(userData?.city || "");
-  const [latitude, setLatitude] = useState<number | string>(userData?.latitude || "");
-  const [longitude, setLongitude] = useState<number | string>(userData?.longitude || "");
+  const [latitude, setLatitude] = useState<number | string>(
+    userData?.latitude || "",
+  );
+  const [longitude, setLongitude] = useState<number | string>(
+    userData?.longitude || "",
+  );
   const [timezone, setTimezone] = useState<string>(userData?.timezone || "");
 
   const handleGetLocation = () => {
@@ -39,8 +61,10 @@ export default function ProfileDataEditor({ userData, userEmail }: ProfileDataEd
         },
         (error) => {
           console.error("Error obtaining location", error);
-          alert("Could not automatically determine location. Please allow location permissions or enter manually.");
-        }
+          alert(
+            "Could not automatically determine location. Please allow location permissions or enter manually.",
+          );
+        },
       );
     } else {
       alert("Geolocation is not available in your browser.");
@@ -62,7 +86,7 @@ export default function ProfileDataEditor({ userData, userEmail }: ProfileDataEd
       longitude: longitude ? Number(longitude) : null,
       timezone,
     });
-    
+
     setIsLoading(false);
     if (!result?.error) {
       setIsEditing(false);
@@ -91,18 +115,17 @@ export default function ProfileDataEditor({ userData, userEmail }: ProfileDataEd
 
   return (
     <div className="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-2xl p-6 sm:p-8 relative transition-colors duration-300">
-      
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 pb-4 border-b border-slate-100 dark:border-zinc-800 gap-4">
         <h2 className="text-xl font-medium text-slate-900 dark:text-white flex items-center gap-2 transition-colors duration-300">
           Profile details
         </h2>
-        
+
         <div className="flex items-center gap-2">
           {!isEditing ? (
             <>
               <LocationUpdateModal />
-              <button 
+              <button
                 onClick={() => setIsEditing(true)}
                 className="flex items-center gap-2 bg-slate-50 dark:bg-zinc-800 hover:bg-slate-100 dark:hover:bg-zinc-700 border border-slate-200 dark:border-zinc-700 text-slate-700 dark:text-slate-300 px-4 py-2 rounded-xl text-sm font-medium transition-all"
               >
@@ -112,19 +135,23 @@ export default function ProfileDataEditor({ userData, userEmail }: ProfileDataEd
             </>
           ) : (
             <>
-              <button 
+              <button
                 onClick={handleCancel}
                 disabled={isLoading}
                 className="flex items-center gap-1.5 bg-white dark:bg-zinc-800 hover:bg-slate-50 dark:hover:bg-zinc-700 border border-slate-200 dark:border-zinc-700 text-slate-500 dark:text-slate-400 px-3 py-1.5 rounded-lg text-sm font-medium transition-all"
               >
                 <X size={16} /> Cancel
               </button>
-              <button 
+              <button
                 onClick={handleSave}
                 disabled={isLoading}
                 className="flex items-center gap-1.5 bg-[#7e56da] hover:bg-[#6543b5] text-white px-4 py-1.5 rounded-lg text-sm font-medium transition-all shadow-md shadow-[#7e56da]/20"
               >
-                {isLoading ? <Loader2 size={16} className="animate-spin" /> : <Check size={16} />} 
+                {isLoading ? (
+                  <Loader2 size={16} className="animate-spin" />
+                ) : (
+                  <Check size={16} />
+                )}
                 Save Changes
               </button>
             </>
@@ -134,18 +161,27 @@ export default function ProfileDataEditor({ userData, userEmail }: ProfileDataEd
 
       {/* Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-10 gap-x-8">
-        
         {/* Full Name */}
         <div className="flex items-start gap-4">
           <div className="mt-0.5 p-2 bg-slate-50 dark:bg-zinc-800 rounded-lg border border-slate-200 dark:border-zinc-700 text-slate-500 dark:text-slate-400 shrink-0 transition-colors duration-300">
             <User size={18} />
           </div>
           <div className="flex-1">
-            <p className="text-xs text-slate-500 dark:text-slate-400 mb-1 font-medium transition-colors duration-300">Full Name</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mb-1 font-medium transition-colors duration-300">
+              Full Name
+            </p>
             {isEditing ? (
-              <ModernAuthInput name="name" type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Full Name" />
+              <ModernAuthInput
+                name="name"
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Full Name"
+              />
             ) : (
-              <p className="text-sm text-slate-900 dark:text-white font-medium transition-colors duration-300">{userData?.name || "Not provided"}</p>
+              <p className="text-sm text-slate-900 dark:text-white font-medium transition-colors duration-300">
+                {userData?.name || "Not provided"}
+              </p>
             )}
           </div>
         </div>
@@ -156,16 +192,24 @@ export default function ProfileDataEditor({ userData, userEmail }: ProfileDataEd
             <Mail size={18} />
           </div>
           <div className="flex-1">
-            <p className="text-xs text-slate-500 dark:text-slate-400 mb-1 font-medium transition-colors duration-300">Email Address</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mb-1 font-medium transition-colors duration-300">
+              Email Address
+            </p>
             <div className="flex items-center gap-2">
-              <p className="text-sm text-slate-900 dark:text-white font-medium transition-colors duration-300">{userData?.email || userEmail}</p>
+              <p className="text-sm text-slate-900 dark:text-white font-medium transition-colors duration-300">
+                {userData?.email || userEmail}
+              </p>
               {userData?.email && !isEditing && (
                 <span className="flex items-center gap-1 px-1.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-[10px] font-mono border border-emerald-200 dark:border-emerald-500/20 shrink-0">
                   <ShieldCheck size={10} /> Verified
                 </span>
               )}
             </div>
-            {isEditing && <p className="text-[10px] text-slate-400 dark:text-slate-500 mt-1">Email cannot be changed directly.</p>}
+            {isEditing && (
+              <p className="text-[10px] text-slate-400 dark:text-slate-500 mt-1">
+                Email cannot be changed directly.
+              </p>
+            )}
           </div>
         </div>
 
@@ -175,11 +219,20 @@ export default function ProfileDataEditor({ userData, userEmail }: ProfileDataEd
             <Calendar size={18} />
           </div>
           <div className="flex-1">
-            <p className="text-xs text-slate-500 dark:text-slate-400 mb-1 font-medium transition-colors duration-300">Date of Birth</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mb-1 font-medium transition-colors duration-300">
+              Date of Birth
+            </p>
             {isEditing ? (
-              <ModernAuthInput name="dob" type="date" value={dob} onChange={(e) => setDob(e.target.value)} />
+              <ModernAuthInput
+                name="dob"
+                type="date"
+                value={dob}
+                onChange={(e) => setDob(e.target.value)}
+              />
             ) : (
-              <p className="text-sm text-slate-900 dark:text-white font-medium transition-colors duration-300">{userData?.date_of_birth || "Not provided"}</p>
+              <p className="text-sm text-slate-900 dark:text-white font-medium transition-colors duration-300">
+                {userData?.date_of_birth || "Not provided"}
+              </p>
             )}
           </div>
         </div>
@@ -190,11 +243,20 @@ export default function ProfileDataEditor({ userData, userEmail }: ProfileDataEd
             <Clock size={18} />
           </div>
           <div className="flex-1">
-            <p className="text-xs text-slate-500 dark:text-slate-400 mb-1 font-medium transition-colors duration-300">Time of Birth</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mb-1 font-medium transition-colors duration-300">
+              Time of Birth
+            </p>
             {isEditing ? (
-              <ModernAuthInput name="tob" type="time" value={tob} onChange={(e) => setTob(e.target.value)} />
+              <ModernAuthInput
+                name="tob"
+                type="time"
+                value={tob}
+                onChange={(e) => setTob(e.target.value)}
+              />
             ) : (
-              <p className="text-sm text-slate-900 dark:text-white font-medium transition-colors duration-300">{userData?.time_of_birth || "Not provided"}</p>
+              <p className="text-sm text-slate-900 dark:text-white font-medium transition-colors duration-300">
+                {userData?.time_of_birth || "Not provided"}
+              </p>
             )}
           </div>
         </div>
@@ -205,12 +267,22 @@ export default function ProfileDataEditor({ userData, userEmail }: ProfileDataEd
             <Phone size={18} />
           </div>
           <div className="flex-1">
-            <p className="text-xs text-slate-500 dark:text-slate-400 mb-1 font-medium transition-colors duration-300">Phone Number</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mb-1 font-medium transition-colors duration-300">
+              Phone Number
+            </p>
             {isEditing ? (
-              <ModernAuthInput name="phone" type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+91 XXXXX XXXXX" />
+              <ModernAuthInput
+                name="phone"
+                type="tel"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder="+91 XXXXX XXXXX"
+              />
             ) : (
               <div className="flex items-center gap-2">
-                <p className="text-sm text-slate-900 dark:text-white font-medium transition-colors duration-300">{userData?.phone || "Not provided"}</p>
+                <p className="text-sm text-slate-900 dark:text-white font-medium transition-colors duration-300">
+                  {userData?.phone || "Not provided"}
+                </p>
                 {userData?.phone && (
                   <span className="flex items-center gap-1 px-1.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-[10px] font-mono border border-emerald-200 dark:border-emerald-500/20 shrink-0">
                     <ShieldCheck size={10} /> Verified
@@ -220,14 +292,16 @@ export default function ProfileDataEditor({ userData, userEmail }: ProfileDataEd
             )}
           </div>
         </div>
-        
+
         {/* Gender */}
         <div className="flex items-start gap-4">
           <div className="mt-0.5 p-2 bg-slate-50 dark:bg-zinc-800 rounded-lg border border-slate-200 dark:border-zinc-700 text-slate-500 dark:text-slate-400 shrink-0 transition-colors duration-300">
             <Orbit size={18} />
           </div>
           <div className="flex-1">
-            <p className="text-xs text-slate-500 dark:text-slate-400 mb-1 font-medium transition-colors duration-300">Gender</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mb-1 font-medium transition-colors duration-300">
+              Gender
+            </p>
             {isEditing ? (
               <div className="flex gap-2">
                 {["male", "female"].map((g) => (
@@ -246,7 +320,9 @@ export default function ProfileDataEditor({ userData, userEmail }: ProfileDataEd
                 ))}
               </div>
             ) : (
-              <p className="text-sm text-slate-900 dark:text-white font-medium capitalize transition-colors duration-300">{userData?.gender || "Not provided"}</p>
+              <p className="text-sm text-slate-900 dark:text-white font-medium capitalize transition-colors duration-300">
+                {userData?.gender || "Not provided"}
+              </p>
             )}
           </div>
         </div>
@@ -257,18 +333,40 @@ export default function ProfileDataEditor({ userData, userEmail }: ProfileDataEd
             <MapPin size={18} />
           </div>
           <div className="flex-1">
-            <p className="text-xs text-slate-500 dark:text-slate-400 mb-1 font-medium transition-colors duration-300">Location</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mb-1 font-medium transition-colors duration-300">
+              Location
+            </p>
             {isEditing ? (
               <div className="space-y-2">
-                <ModernAuthInput name="country" type="text" value={country} onChange={(e) => setCountry(e.target.value)} placeholder="Country" />
+                <ModernAuthInput
+                  name="country"
+                  type="text"
+                  value={country}
+                  onChange={(e) => setCountry(e.target.value)}
+                  placeholder="Country"
+                />
                 <div className="flex gap-2">
-                  <ModernAuthInput name="state" type="text" value={state} onChange={(e) => setState(e.target.value)} placeholder="State" />
-                  <ModernAuthInput name="city" type="text" value={city} onChange={(e) => setCity(e.target.value)} placeholder="City" />
+                  <ModernAuthInput
+                    name="state"
+                    type="text"
+                    value={state}
+                    onChange={(e) => setState(e.target.value)}
+                    placeholder="State"
+                  />
+                  <ModernAuthInput
+                    name="city"
+                    type="text"
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    placeholder="City"
+                  />
                 </div>
               </div>
             ) : (
-               <p className="text-sm text-slate-900 dark:text-white font-medium transition-colors duration-300">
-                {[userData?.city, userData?.state, userData?.country].filter(Boolean).join(", ") || "Not provided"}
+              <p className="text-sm text-slate-900 dark:text-white font-medium transition-colors duration-300">
+                {[userData?.city, userData?.state, userData?.country]
+                  .filter(Boolean)
+                  .join(", ") || "Not provided"}
               </p>
             )}
           </div>
@@ -280,25 +378,42 @@ export default function ProfileDataEditor({ userData, userEmail }: ProfileDataEd
             <Orbit size={18} />
           </div>
           <div className="flex-1">
-            <p className="text-xs text-slate-500 dark:text-slate-400 mb-1 font-medium transition-colors duration-300">Coordinates</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mb-1 font-medium transition-colors duration-300">
+              Coordinates
+            </p>
             {isEditing ? (
               <div className="space-y-2">
                 <div className="flex gap-2">
-                  <ModernAuthInput name="latitude" type="number" step="any" value={latitude as string} onChange={(e) => setLatitude(e.target.value)} placeholder="Latitude" />
-                  <ModernAuthInput name="longitude" type="number" step="any" value={longitude as string} onChange={(e) => setLongitude(e.target.value)} placeholder="Longitude" />
+                  <ModernAuthInput
+                    name="latitude"
+                    type="number"
+                    step="any"
+                    value={latitude as string}
+                    onChange={(e) => setLatitude(e.target.value)}
+                    placeholder="Latitude"
+                  />
+                  <ModernAuthInput
+                    name="longitude"
+                    type="number"
+                    step="any"
+                    value={longitude as string}
+                    onChange={(e) => setLongitude(e.target.value)}
+                    placeholder="Longitude"
+                  />
                 </div>
-                <button 
-                  type="button" 
+                <button
+                  type="button"
                   onClick={handleGetLocation}
                   className="flex items-center justify-center gap-2 w-full bg-slate-100 dark:bg-zinc-800 hover:bg-slate-200 dark:hover:bg-zinc-700 text-slate-700 dark:text-slate-300 px-3 py-2 rounded-xl text-xs font-semibold transition-colors"
                 >
-                  <Navigation size={14} className="text-[#7e56da]" /> Auto-detect Coordinates
+                  <Navigation size={14} className="text-[#7e56da]" />{" "}
+                  Auto-detect Coordinates
                 </button>
               </div>
             ) : (
               <>
                 <p className="text-sm text-slate-900 dark:text-white font-mono transition-colors duration-300">
-                  {userData?.latitude && userData?.longitude 
+                  {userData?.latitude && userData?.longitude
                     ? `${Number(userData.latitude).toFixed(4)}°, ${Number(userData.longitude).toFixed(4)}°`
                     : "Unknown"}
                 </p>
@@ -313,9 +428,17 @@ export default function ProfileDataEditor({ userData, userEmail }: ProfileDataEd
             <Clock size={18} />
           </div>
           <div className="flex-1">
-            <p className="text-xs text-slate-500 dark:text-slate-400 mb-1 font-medium transition-colors duration-300">Timezone</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mb-1 font-medium transition-colors duration-300">
+              Timezone
+            </p>
             {isEditing ? (
-              <ModernAuthInput name="timezone" type="text" value={timezone} onChange={(e) => setTimezone(e.target.value)} placeholder="e.g. 5.5 or Asia/Kolkata" />
+              <ModernAuthInput
+                name="timezone"
+                type="text"
+                value={timezone}
+                onChange={(e) => setTimezone(e.target.value)}
+                placeholder="e.g. 5.5 or Asia/Kolkata"
+              />
             ) : (
               <p className="text-sm text-slate-900 dark:text-white font-mono transition-colors duration-300">
                 {userData?.timezone || "Unknown"}
@@ -324,19 +447,21 @@ export default function ProfileDataEditor({ userData, userEmail }: ProfileDataEd
           </div>
         </div>
 
-         {/* Subscription */}
-         <div className="flex items-start gap-4">
+        {/* Subscription */}
+        <div className="flex items-start gap-4">
           <div className="mt-0.5 p-2 bg-emerald-50 dark:bg-emerald-500/10 rounded-lg border border-emerald-200 dark:border-emerald-500/30 text-emerald-600 dark:text-emerald-400 shrink-0 transition-colors duration-300">
             <Sparkles size={18} />
           </div>
           <div className="flex-1">
-            <p className="text-xs text-slate-500 dark:text-slate-400 mb-1 font-medium transition-colors duration-300">Subscription</p>
-            <p className="text-sm text-slate-900 dark:text-white font-medium transition-colors duration-300">Urekha Free Tier</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mb-1 font-medium transition-colors duration-300">
+              Subscription
+            </p>
+            <p className="text-sm text-slate-900 dark:text-white font-medium transition-colors duration-300">
+              Urekha Free Tier
+            </p>
           </div>
         </div>
-
       </div>
-
     </div>
   );
 }
