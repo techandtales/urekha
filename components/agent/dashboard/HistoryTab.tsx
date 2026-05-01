@@ -101,15 +101,26 @@ export function HistoryTab({
                     </td>
                     <td className="p-6">
                       <div className="flex justify-center">
-                        <button
-                          onClick={() => {
-                            setActiveTab("view_report", report.report_id || report.id);
-                          }}
-                          className="p-3 mx-auto rounded-xl bg-slate-100 dark:bg-white/5 text-slate-400 dark:text-white/30 hover:bg-primary/20 hover:text-primary dark:hover:bg-primary/20 dark:hover:text-primary hover:shadow-[0_0_15px_rgba(212,175,55,0.3)] transition-all group-hover:scale-105"
-                          title="View details"
-                        >
-                          <Eye size={18} />
-                        </button>
+                        {report.status !== "READY" ? (
+                          <div className="flex flex-col items-center gap-1">
+                            <span className={`text-[9px] font-black uppercase tracking-tighter ${report.status === 'FAILED' ? 'text-red-500' : 'text-primary animate-pulse'}`}>
+                              {report.status === 'FAILED' ? 'Failed' : (report.progress?.split(" ")[0] || "Wait")}
+                            </span>
+                            <div className="w-12 h-1 bg-white/5 rounded-full overflow-hidden">
+                              <div className={`h-full ${report.status === 'FAILED' ? 'bg-red-500' : 'bg-primary'} transition-all duration-500`} style={{ width: report.status === 'FAILED' ? '100%' : '50%' }} />
+                            </div>
+                          </div>
+                        ) : (
+                          <button
+                            onClick={() => {
+                              setActiveTab("view_report", report.report_id || report.id);
+                            }}
+                            className="p-3 mx-auto rounded-xl bg-slate-100 dark:bg-white/5 text-slate-400 dark:text-white/30 hover:bg-primary/20 hover:text-primary dark:hover:bg-primary/20 dark:hover:text-primary hover:shadow-[0_0_15px_rgba(212,175,55,0.3)] transition-all group-hover:scale-105"
+                            title="View details"
+                          >
+                            <Eye size={18} />
+                          </button>
+                        )}
                       </div>
                     </td>
                   </tr>

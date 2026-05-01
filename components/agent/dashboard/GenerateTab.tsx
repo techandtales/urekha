@@ -3,6 +3,7 @@ import {
   User, Calendar, MapPin, Search, Loader2, 
   Lock, Check, Bot, Hash, X 
 } from "lucide-react";
+import { motion } from "framer-motion";
 import EmbeddedPipeline from "@/components/pipeline/EmbeddedPipeline";
 import type { Language } from "@/types/languages";
 import { useRouter } from "next/navigation";
@@ -31,7 +32,7 @@ interface GenerateTabProps {
   suggestions: any[];
   handleSelectLocation: (s: any) => void;
   handleOpenMap: () => void;
-  selectedPackage: string;
+  selectedPackage: string | number;
   setSelectedPackage: (val: any) => void;
   language: Language;
   setLanguage: (val: Language) => void;
@@ -43,8 +44,10 @@ interface GenerateTabProps {
   setIsConfirmModalOpen: (val: boolean) => void;
   handleSubmit: (e: React.FormEvent) => void;
   handleConfirmGenerate: () => void;
-  generationStatus: "idle" | "pipeline" | "viewing";
-  setGenerationStatus: (val: "idle" | "pipeline" | "viewing") => void;
+  generationStatus: "idle" | "pipeline" | "viewing" | "processing";
+  reportProgress: string;
+  reportError: string | null;
+  setGenerationStatus: (val: "idle" | "pipeline" | "viewing" | "processing") => void;
   resetGenerationForm: () => void;
   saveReportState: "idle" | "saving" | "success" | "error";
   saveRetryCount: number;
@@ -94,6 +97,8 @@ export function GenerateTab({
   generationStatus,
   setGenerationStatus,
   resetGenerationForm,
+  reportProgress,
+  reportError,
   saveReportState,
   saveRetryCount,
   setSaveRetryCount,
@@ -203,18 +208,22 @@ export function GenerateTab({
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-xs uppercase tracking-wider font-semibold text-slate-500 dark:text-white/50 ml-1 transition-colors">
-                    Time of Birth{" "}
-                    <span className="opacity-50 lowercase">
-                      (optional)
-                    </span>
+                  <label className="text-xs uppercase tracking-wider font-semibold text-slate-500 dark:text-white/50 ml-1 transition-colors flex items-center justify-between">
+                    <span>Time of Birth</span>
+                    <span className="text-[9px] bg-primary/10 text-primary px-1.5 py-0.5 rounded border border-primary/20">24H Format</span>
                   </label>
                   <div className="relative group/input">
                     <input
-                      type="time"
+                      type="text"
+                      placeholder="HH:MM (e.g. 23:45)"
                       value={tob}
-                      onChange={(e) => setTob(e.target.value)}
-                      className="w-full bg-slate-50 dark:bg-white/[0.03] border border-slate-200 dark:border-white/10 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-brand-gold/50 focus:bg-white dark:focus:bg-white/[0.05] focus:shadow-primary/10 transition-all hide-picker-indicator font-sans"
+                      onChange={(e) => {
+                        let val = e.target.value.replace(/[^0-9:]/g, '');
+                        if (val.length === 2 && !val.includes(':')) val += ':';
+                        if (val.length > 5) val = val.substring(0, 5);
+                        setTob(val);
+                      }}
+                      className="w-full bg-slate-50 dark:bg-white/[0.03] border border-slate-200 dark:border-white/10 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-brand-gold/50 focus:bg-white dark:focus:bg-white/[0.05] focus:shadow-primary/10 transition-all font-mono placeholder:text-slate-300 dark:placeholder:text-white/10"
                     />
                     <Clock
                       className="absolute right-4 top-3.5 text-slate-400 dark:text-white/30 group-focus-within/input:text-primary transition-colors pointer-events-none"
@@ -379,14 +388,14 @@ export function GenerateTab({
                         setSelectedPackage(pkg.id)
                       }
                       className={`relative p-6 rounded-2xl border cursor-pointer transition-all duration-500 overflow-hidden group ${
-                        selectedPackage === pkg.id
+                        String(selectedPackage) === String(pkg.id)
                           ? "border-brand-gold shadow-[0_0_30px_rgba(212,175,55,0.2)] bg-primary/10 scale-105"
                           : "border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/[0.02] hover:border-primary/50 dark:hover:border-primary/50 hover:bg-white dark:hover:bg-white/[0.05] hover:shadow-md dark:hover:shadow-[0_0_20px_rgba(212,175,55,0.1)]"
                       }`}
                     >
                       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-                      {selectedPackage === pkg.id && (
+                      {String(selectedPackage) === String(pkg.id) && (
                         <div className="absolute top-4 right-4 bg-primary text-black p-1 rounded-full shadow-[0_0_15px_rgba(212,175,55,0.5)] z-10">
                           <Check size={14} strokeWidth={4} />
                         </div>
@@ -559,7 +568,7 @@ export function GenerateTab({
                 <div className="absolute inset-0 w-[200%] bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none" />
                 <span className="relative z-10">
                   {isLoading
-                    ? "Generating Report..."
+                    ? `Processing (${reportProgress.replace(/_/g, " ") || "Wait..."})`
                     : "Generate Report Now"}
                 </span>
               </button>
@@ -567,6 +576,8 @@ export function GenerateTab({
           </form>
         </>
       )}
+
+      {/* Removed dedicated processing view to keep the form visible */}
 
       {/* Integrated Loading & Finalization View */}
       {generationStatus === "viewing" && (
@@ -620,6 +631,56 @@ export function GenerateTab({
                 Back to Dashboard
               </button>
             )}
+          </div>
+        </div>
+      )}
+
+      {/* Processing Phase View */}
+      {generationStatus === "processing" && (
+        <div className="flex flex-col items-center justify-center py-24 bg-white/5 backdrop-blur-3xl rounded-[3rem] border border-white/10 shadow-2xl relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-1 bg-white/5">
+            <motion.div 
+              className="h-full bg-primary shadow-[0_0_15px_#00FF94]"
+              initial={{ width: "0%" }}
+              animate={{ width: "100%" }}
+              transition={{ duration: 30, ease: "linear" }}
+            />
+          </div>
+
+          <div className="relative mb-12">
+            <div className="w-32 h-32 rounded-full border-2 border-primary/20 flex items-center justify-center">
+              <Bot className="w-16 h-16 text-primary animate-pulse" />
+            </div>
+            <div className="absolute inset-0 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+          </div>
+
+          <div className="text-center space-y-6 px-8">
+            <div className="space-y-2">
+              <h2 className="text-4xl font-serif font-black tracking-tight text-white uppercase italic">
+                Sourcing <span className="text-primary">Celestial</span> Data
+              </h2>
+              <div className="flex items-center justify-center gap-3">
+                <span className="h-px w-8 bg-primary/30" />
+                <span className="text-xs font-mono text-primary tracking-[0.3em] uppercase">
+                  Neural Sync in Progress
+                </span>
+                <span className="h-px w-8 bg-primary/30" />
+              </div>
+            </div>
+
+            <div className="bg-black/40 border border-white/10 rounded-2xl px-10 py-5 backdrop-blur-md">
+              <span className="text-xl font-mono text-white tracking-widest">
+                {reportProgress.replace(/_/g, " ")}
+              </span>
+            </div>
+
+            <p className="text-slate-400 text-sm max-w-sm mx-auto leading-relaxed">
+              We are currently fetching 73 points of astrological data and generating AI interpretations. 
+              <br/>
+              <span className="text-primary/60 italic font-medium mt-2 block">
+                This typically takes 45-90 seconds.
+              </span>
+            </p>
           </div>
         </div>
       )}
@@ -692,7 +753,7 @@ export function GenerateTab({
                   Package
                 </span>
                 <span className="text-primary font-bold uppercase">
-                  {(agentPlans.find(p => p.id === selectedPackage))?.name || selectedPackage}
+                  {(agentPlans.find(p => String(p.id) === String(selectedPackage)))?.name || selectedPackage}
                 </span>
               </div>
             </div>

@@ -235,16 +235,29 @@ function CompleteProfileContent() {
               </div>
 
               <div className="space-y-2">
-                <label className="text-xs uppercase tracking-wider font-semibold text-slate-500 dark:text-white/50 ml-1 transition-colors duration-300">
-                  Time of Birth{" "}
-                  <span className="opacity-50 lowercase">(optional)</span>
+                <label className="text-xs uppercase tracking-wider font-semibold text-slate-500 dark:text-white/50 ml-1 transition-colors duration-300 flex items-center justify-between">
+                  <span>Time of Birth</span>
+                  <span className="text-[9px] bg-brand-gold/10 text-brand-gold px-1.5 py-0.5 rounded border border-brand-gold/20">24H Format</span>
                 </label>
                 <div className="relative group/input">
                   <input
-                    type="time"
+                    type="text"
+                    placeholder="HH:MM"
                     value={tob}
-                    onChange={(e) => setTob(e.target.value)}
-                    className="w-full bg-slate-50 dark:bg-white/[0.03] border border-slate-200 dark:border-white/10 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-brand-gold/50 focus:bg-white dark:focus:bg-white/[0.05] focus:shadow-[0_0_15px_rgba(212,175,55,0.1)] transition-all duration-300 hide-picker-indicator"
+                    onChange={(e) => {
+                      let val = e.target.value.replace(/[^0-9:]/g, "");
+                      if (val.length === 2 && !val.includes(":")) val += ":";
+                      if (val.length > 5) val = val.substring(0, 5);
+                      setTob(val);
+                    }}
+                    onBlur={(e) => {
+                      const val = e.target.value;
+                      const regex = /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/;
+                      if (val && !regex.test(val)) {
+                        setTob("");
+                      }
+                    }}
+                    className="w-full bg-slate-50 dark:bg-white/[0.03] border border-slate-200 dark:border-white/10 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-brand-gold/50 focus:bg-white dark:focus:bg-white/[0.05] focus:shadow-[0_0_15px_rgba(212,175,55,0.1)] transition-all duration-300 font-mono placeholder:text-slate-400 dark:placeholder:text-white/20"
                   />
                   <Clock
                     className="absolute right-4 top-3.5 text-slate-400 dark:text-white/30 group-focus-within/input:text-brand-gold transition-colors pointer-events-none"

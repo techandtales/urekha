@@ -195,6 +195,23 @@ const PAGE_GROUPS: PageGroup[] = [
     ],
   },
   {
+    id: "ashtakavarga",
+    label: "Ashtakavarga",
+    icon: <Table size={18} />,
+    renderPages: (lang, store) => [
+      <ReactPdfAshtakavargaPage
+        key="bav"
+        lang={lang as any}
+        data={store.jyotishamData.horoscope.binnashtakvarga?.response as any}
+      />,
+      <ReactPdfSarvashtakavargaPage
+        key="sav"
+        lang={lang as any}
+        data={store.jyotishamData.horoscope.ashtakvarga?.response as any}
+      />,
+    ],
+  },
+  {
     id: "predictions",
     label: "AI Predictions",
     icon: <Sparkles size={18} />,

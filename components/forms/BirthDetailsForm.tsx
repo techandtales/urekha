@@ -94,12 +94,23 @@ export default function SimpleBirthForm() {
               />
             </div>
             <div className="flex flex-col">
-              <label className={labelBase}>Time of Birth</label>
+              <label className={labelBase}>
+                Time of Birth
+                <span className="text-[7pt] bg-zinc-100 text-zinc-500 px-1.5 py-0.5 rounded ml-auto">24H</span>
+              </label>
               <input
                 ref={tobRef}
-                type="time"
+                type="text"
                 defaultValue="14:30"
+                placeholder="HH:MM"
                 className={inputBase}
+                onBlur={(e) => {
+                  const val = e.target.value;
+                  const regex = /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/;
+                  if (val && !regex.test(val)) {
+                    e.target.value = "12:00"; // Default fallback
+                  }
+                }}
               />
             </div>
           </div>

@@ -160,9 +160,24 @@ export async function fetchUserReportFromMongo(reportId: string) {
 
     const db = await getMongoDb();
     
-    // Try 'report_data' first (Current Unified Schema)
-    // We already verified ownership/access via Supabase above, so we lookup by report_id
-    let doc = await db.collection("report_data").findOne({ 
+    // 1. Try 'full_reports_data' (New Premium Async Worker Schema)
+    let doc = await db.collection("full_reports_data").findOne({ 
+      report_id: reportId 
+    });
+
+    if (doc) {
+      return { 
+        success: true, 
+        meta: reportMeta || { id: reportId, birth_details: doc.birth_details },
+        coreData: doc.astrology, // Matches worker schema
+        predictions: doc.ai_interpretations || doc.predictions || {},
+        birth_details: doc.birth_details,
+        source: "full_reports_data"
+      };
+    }
+
+    // 2. Try 'report_data' (Standard Unified Schema)
+    doc = await db.collection("report_data").findOne({ 
       report_id: reportId 
     });
 
@@ -200,3 +215,69 @@ export async function fetchUserReportFromMongo(reportId: string) {
   }
 }
 
+
+export async function getSampleReportAction(reportId: string) {
+  try {
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+
+    if (!user) {
+      return { error: "Unauthenticated" };
+    }
+
+    const db = await getMongoDb();
+    const collection = db.collection("sample_reports_data");
+    
+    let doc = await collection.findOne({ _id: reportId as any });
+    
+    if (!doc) {
+      return { error: "Sample report not found." };
+    }
+
+    // ─── Data Normalization Layer ───────────────────────────────────────
+    // This ensures compatibility between legacy (ai_input) and new formats.
+    let normalized: any = { ...doc };
+
+    if (doc.ai_input) {
+      const aiInput = doc.ai_input;
+      const keysToParse = [
+        "ascendant_report", 
+        "planet_details", 
+        "dasha_current_maha", 
+        "dosha_mangal", 
+        "dosha_kaalsarp", 
+        "divisional_chart_D1", 
+        "divisional_chart_D9",
+        "birth_details"
+      ];
+
+      keysToParse.forEach(key => {
+        if (aiInput[key]) {
+          try {
+            normalized[key] = typeof aiInput[key] === "string" ? JSON.parse(aiInput[key]) : aiInput[key];
+          } catch (e) {
+            normalized[key] = aiInput[key];
+          }
+        }
+      });
+
+      // Ensure summary_report is present for the PDF renderer
+      normalized.summary_report = normalized.ai_summary || normalized.summary_report;
+    }
+
+    // ─── Profile & Birth Details Reconciliation ─────────────────────────
+    // The PDF renderer uses 'profile', but some records use 'birth_details'.
+    // We ensure both are populated and synchronized.
+    if (!normalized.profile && normalized.birth_details) {
+      normalized.profile = normalized.birth_details;
+    } else if (!normalized.birth_details && normalized.profile) {
+      normalized.birth_details = normalized.profile;
+    }
+
+    return { success: true, data: normalized };
+
+  } catch (err: any) {
+    console.error("Get Sample Report Action Exception:", err);
+    return { error: err.message || String(err) };
+  }
+}

@@ -247,3 +247,13 @@ SVG_CHART_IDS.forEach((id) => {
     label: `${id} SVG`,
   });
 });
+
+// Push Bhinnashtakvarga planet-specific mappings
+["sun", "moon", "mars", "mercury", "jupiter", "venus", "saturn"].forEach((planet) => {
+  JYOTISHAM_MAPPINGS.push({
+    slug: `binnashtakvarga_${planet}`,
+    category: "horoscope",
+    field: "binnashtakvarga", // Note: This might overwrite or needs subfield handling if UI expects it
+    label: `Bhinnashtakvarga ${planet}`,
+  });
+});

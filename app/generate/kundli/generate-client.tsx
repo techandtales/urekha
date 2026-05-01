@@ -419,14 +419,28 @@ function GenerateKundliContent({
 
                     {/* TOB */}
                     <div className="space-y-2">
-                       <label className="text-[11px] text-slate-900 dark:text-white/40 uppercase tracking-widest ml-1 font-black">Birth Time</label>
+                       <label className="text-[11px] text-slate-900 dark:text-white/40 uppercase tracking-widest ml-1 font-black">Birth Time (24h)</label>
                        <div className="relative group/field">
                          <input 
-                           type="time" 
+                           type="text" 
                            required 
                            value={tob} 
-                           onChange={(e) => setTob(e.target.value)} 
-                           className="w-full bg-slate-900/5 dark:bg-white/5 border border-slate-300 dark:border-white/10 rounded-xl px-4 py-4 text-base text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500/50 transition-all font-bold"
+                           placeholder="HH:MM"
+                           onChange={(e) => {
+                             let val = e.target.value.replace(/[^0-9:]/g, "");
+                             if (val.length === 2 && !val.includes(":")) val += ":";
+                             if (val.length > 5) val = val.substring(0, 5);
+                             setTob(val);
+                           }} 
+                           onBlur={(e) => {
+                             const val = e.target.value;
+                             const regex = /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/;
+                             if (val && !regex.test(val)) {
+                               setTob("");
+                               toast.error("Invalid time format", { description: "Use HH:MM (00:00 - 23:59)" });
+                             }
+                           }}
+                           className="w-full bg-slate-900/5 dark:bg-white/5 border border-slate-300 dark:border-white/10 rounded-xl px-4 py-4 text-base text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500/50 transition-all font-bold font-mono placeholder:text-slate-400 dark:placeholder:text-white/20"
                          />
                          <Clock className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 dark:text-white/20 pointer-events-none" />
                        </div>

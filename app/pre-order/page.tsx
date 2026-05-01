@@ -268,10 +268,24 @@ export default function PreOrderPage() {
                 />
                 
                 <InputField 
-                  label="Time of Birth" 
-                  type="time"
+                  label="Time of Birth (24h)" 
+                  type="text"
+                  placeholder="HH:MM"
                   value={formData.tob}
-                  onChange={(e: any) => setFormData({...formData, tob: e.target.value})}
+                  onChange={(e: any) => {
+                    let val = e.target.value.replace(/[^0-9:]/g, "");
+                    if (val.length === 2 && !val.includes(":")) val += ":";
+                    if (val.length > 5) val = val.substring(0, 5);
+                    setFormData({...formData, tob: val});
+                  }}
+                  onBlur={(e: any) => {
+                    const val = e.target.value;
+                    const regex = /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/;
+                    if (val && !regex.test(val)) {
+                      setFormData({...formData, tob: ""});
+                      toast.error("Invalid time format", { description: "Use HH:MM (00:00 - 23:59)" });
+                    }
+                  }}
                   required
                 />
 

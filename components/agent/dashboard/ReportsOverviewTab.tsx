@@ -484,16 +484,32 @@ export function ReportsOverviewTab({
                       </div>
                       
                       <div className="flex items-center gap-2">
-                        <button 
-                          onClick={() => {
-                            setActiveTab("view_report", report.report_id || report.id);
-                          }}
-                          className="group/btn p-3 bg-slate-100 dark:bg-white/5 hover:bg-primary/20 dark:hover:bg-primary/20 rounded-xl text-slate-500 dark:text-white/50 hover:text-primary dark:hover:text-primary transition-all duration-300 border border-slate-200 dark:border-white/10 hover:border-primary/40 flex items-center gap-2"
-                          title="View Full Report"
-                        >
-                          <span className="text-xs font-bold uppercase tracking-widest hidden lg:block ml-1">View</span>
-                          <Eye size={20} className="group-hover/btn:scale-110 transition-transform" />
-                        </button>
+                        {report.status !== "READY" ? (
+                          <div className="flex flex-col items-end gap-1 px-2">
+                            <span className={`text-[10px] font-bold uppercase tracking-widest ${report.status === 'FAILED' ? 'text-red-500' : 'text-primary animate-pulse'}`}>
+                              {report.status === 'FAILED' ? 'Failed' : (report.progress?.replace(/_/g, " ") || "Processing")}
+                            </span>
+                            <div className="w-24 h-1 bg-white/5 rounded-full overflow-hidden">
+                              <motion.div 
+                                className={`h-full ${report.status === 'FAILED' ? 'bg-red-500' : 'bg-primary shadow-[0_0_8px_#00FF94]'}`}
+                                initial={{ width: "0%" }}
+                                animate={{ width: report.status === 'FAILED' ? "100%" : "60%" }}
+                                transition={{ duration: 1 }}
+                              />
+                            </div>
+                          </div>
+                        ) : (
+                          <button 
+                            onClick={() => {
+                              setActiveTab("view_report", report.report_id || report.id);
+                            }}
+                            className="group/btn p-3 bg-slate-100 dark:bg-white/5 hover:bg-primary/20 dark:hover:bg-primary/20 rounded-xl text-slate-500 dark:text-white/50 hover:text-primary dark:hover:text-primary transition-all duration-300 border border-slate-200 dark:border-white/10 hover:border-primary/40 flex items-center gap-2"
+                            title="View Full Report"
+                          >
+                            <span className="text-xs font-bold uppercase tracking-widest hidden lg:block ml-1">View</span>
+                            <Eye size={20} className="group-hover/btn:scale-110 transition-transform" />
+                          </button>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -580,16 +596,32 @@ export function ReportsOverviewTab({
                         </p>
                       </div>
                       
-                      <button 
-                        onClick={() => {
-                          setActiveTab("view_report", report.report_id || report.id);
-                        }}
-                        className="group/btn p-3 bg-slate-100 dark:bg-white/5 hover:bg-primary/20 dark:hover:bg-primary/20 rounded-xl text-slate-500 dark:text-white/50 hover:text-primary dark:hover:text-primary transition-all duration-300 border border-slate-200 dark:border-white/10 hover:border-primary/40 flex items-center gap-2"
-                        title="View Full Report"
-                      >
-                        <span className="text-xs font-bold uppercase tracking-widest hidden lg:block ml-1">View</span>
-                        <Eye size={20} className="group-hover/btn:scale-110 transition-transform" />
-                      </button>
+                      {report.status !== "READY" ? (
+                        <div className="flex flex-col items-end gap-1 px-2">
+                          <span className={`text-[10px] font-bold uppercase tracking-widest ${report.status === 'FAILED' ? 'text-red-500' : 'text-primary animate-pulse'}`}>
+                            {report.status === 'FAILED' ? 'Failed' : (report.progress?.replace(/_/g, " ") || "Processing")}
+                          </span>
+                          <div className="w-24 h-1 bg-white/5 rounded-full overflow-hidden">
+                            <motion.div 
+                              className={`h-full ${report.status === 'FAILED' ? 'bg-red-500' : 'bg-primary shadow-[0_0_8px_#00FF94]'}`}
+                              initial={{ width: "0%" }}
+                              animate={{ width: report.status === 'FAILED' ? "100%" : "60%" }}
+                              transition={{ duration: 1 }}
+                            />
+                          </div>
+                        </div>
+                      ) : (
+                        <button 
+                          onClick={() => {
+                            setActiveTab("view_report", report.report_id || report.id);
+                          }}
+                          className="group/btn p-3 bg-slate-100 dark:bg-white/5 hover:bg-primary/20 dark:hover:bg-primary/20 rounded-xl text-slate-500 dark:text-white/50 hover:text-primary dark:hover:text-primary transition-all duration-300 border border-slate-200 dark:border-white/10 hover:border-primary/40 flex items-center gap-2"
+                          title="View Full Report"
+                        >
+                          <span className="text-xs font-bold uppercase tracking-widest hidden lg:block ml-1">View</span>
+                          <Eye size={20} className="group-hover/btn:scale-110 transition-transform" />
+                        </button>
+                      )}
                     </div>
                   </div>
                 );

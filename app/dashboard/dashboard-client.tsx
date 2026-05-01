@@ -5,6 +5,7 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip as RechartsTooltip, ResponsiveCont
 import Image from "next/image";
 import { AgentNavbar } from "@/components/agent/AgentNavbar";
 import { AstrologyBackground } from "@/components/admin/AstrologyBackground";
+import { createClient } from "@/utils/supabase/client";
 import {
   User,
   MapPin,
@@ -33,6 +34,7 @@ import {
   Search,
   Menu,
   Eye,
+  Zap,
 } from "lucide-react";
 import Link from "next/link";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
@@ -46,8 +48,6 @@ import { requestTokens, cancelTokenRequest } from "@/app/actions/token-actions";
 import { toast } from "sonner";
 import { useStore } from "@/lib/store";
 import EmbeddedPipeline from "@/components/pipeline/EmbeddedPipeline";
-import SocketInitializer from "@/components/socket-initializer";
-import { socket } from "@/lib/socketio/client";
 import { API_BASE_URL } from "@/lib/config/api";
 import { JYOTISHAM_MAPPINGS } from "@/lib/pipeline/constants";
 import dynamic from "next/dynamic";
@@ -56,6 +56,7 @@ import { HistoryTab } from "@/components/agent/dashboard/HistoryTab";
 import { ViewReportTab } from "@/components/agent/dashboard/ViewReportTab";
 import { ReportsOverviewTab } from "@/components/agent/dashboard/ReportsOverviewTab";
 import { GenerateTab } from "@/components/agent/dashboard/GenerateTab";
+import { SampleReportTab } from "@/components/agent/dashboard/SampleReportTab";
 
 type PackageType = "basic" | "plus" | "pro" | "premium";
 
@@ -77,6 +78,7 @@ export default function AgentDashboardClient({
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
+  const supabase = createClient();
   
   // Deterministic formatting helpers to prevent hydration mismatches
   const formatDeterministicTime = (date: Date | string | number) => {
@@ -102,12 +104,13 @@ export default function AgentDashboardClient({
     | "reports"
     | "history"
     | "view_report"
+    | "sample"
     | null;
   const activeTab = tabParam || "reports";
   
   const reportIdParam = searchParams.get("report_id");
 
-  const setActiveTab = (tab: "generate" | "reports" | "history" | "view_report", reportId?: string | number) => {
+  const setActiveTab = (tab: "generate" | "reports" | "history" | "view_report" | "sample", reportId?: string | number) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set("tab", tab);
     
@@ -122,15 +125,62 @@ export default function AgentDashboardClient({
   };
 
   const [selectedReportId, setSelectedReportId] = useState<number | string | null>(reportIdParam);
+  const [reports, setReports] = useState<any[]>(recentReports || []);
+
+  // Sync state with prop updates from router.refresh()
+  useEffect(() => {
+    setReports(recentReports || []);
+  }, [recentReports]);
 
   // Sync state with URL
   useEffect(() => {
     setSelectedReportId(reportIdParam);
   }, [reportIdParam]);
+
   const [generationStatus, setGenerationStatus] = useState<
-    "idle" | "pipeline" | "viewing"
+    "idle" | "pipeline" | "viewing" | "processing"
   >("idle");
+  const [reportProgress, setReportProgress] = useState<string>("INITIALIZING");
+  const [reportError, setReportError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [user, setUser] = useState<any>(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const { data } = await supabase.auth.getUser();
+      setUser(data.user);
+      
+      if (data.user) {
+        // Global subscription for all reports by this agent
+        const channel = supabase
+          .channel('global_reports')
+          .on(
+            'postgres_changes',
+            {
+              event: '*',
+              schema: 'public',
+              table: 'agentreports',
+              filter: `agent_id=eq.${agentData?.id}`
+            },
+            (payload) => {
+              console.log("[Global Realtime] Update:", payload);
+              if (payload.eventType === 'INSERT') {
+                setReports(prev => [payload.new, ...prev]);
+              } else if (payload.eventType === 'UPDATE') {
+                setReports(prev => prev.map(r => r.report_id === payload.new.report_id ? { ...r, ...payload.new } : r));
+              }
+            }
+          )
+          .subscribe();
+          
+        return () => {
+          supabase.removeChannel(channel);
+        };
+      }
+    };
+    fetchUser();
+  }, [agentData?.id]);
+
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const { setBirthDetails, resetPipeline } = useStore();
 
@@ -147,22 +197,31 @@ export default function AgentDashboardClient({
   const predictions = useStore((s) => s.jyotishamData.predictions);
 
   // User Details
-  const [name, setName] = useState("");
-  const [dob, setDob] = useState("");
-  const [tob, setTob] = useState("");
-  const [gender, setGender] = useState<"male" | "female" | "">("");
+  const [name, setName] = useState("Test User");
+  const [dob, setDob] = useState("1995-05-15");
+  const [tob, setTob] = useState("10:30");
+  const [gender, setGender] = useState<"male" | "female" | "">("male");
 
   // Computed Age
   const [ageString, setAgeString] = useState("");
 
   // Location
-  const [lat, setLat] = useState("");
-  const [lng, setLng] = useState("");
-  const [locationName, setLocationName] = useState("");
+  const [lat, setLat] = useState("28.6139");
+  const [lng, setLng] = useState("77.2090");
+  const [locationName, setLocationName] = useState("New Delhi, Delhi, India");
   const [isFetchingLocation, setIsFetchingLocation] = useState(false);
+  const [timezone, setTimezone] = useState<number | string>(5.5);
 
   // Package
-  const [selectedPackage, setSelectedPackage] = useState<PackageType | "">("");
+  const [selectedPackage, setSelectedPackage] = useState<string | number | "">("");
+  
+  // Initialize default package when plans load
+  useEffect(() => {
+    if (agentPlans?.length > 0 && !selectedPackage) {
+      setSelectedPackage(agentPlans[0].id);
+    }
+  }, [agentPlans, selectedPackage]);
+
   const [language, setLanguage] = useState<Language>("en");
   const [paperQuality, setPaperQuality] = useState<"regular" | "premium">(
     "regular",
@@ -223,7 +282,7 @@ export default function AgentDashboardClient({
   const [isHistoryModalOpen, setIsHistoryModalOpen] = useState(false);
 
   // Location Search
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState("New Delhi");
   const [isSearching, setIsSearching] = useState(false);
   const [suggestions, setSuggestions] = useState<any[]>([]);
   const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -430,6 +489,12 @@ export default function AgentDashboardClient({
   const handleConfirmGenerate = async () => {
     setIsConfirmModalOpen(false);
     setIsLoading(true);
+    if (!selectedPackage) {
+      toast.error("Package Selection Required", { description: "Please select a report plan before generating." });
+      setIsLoading(false);
+      return;
+    }
+
     setFinalized(false);
 
     // 1. Check if this kundli already exists (global deduplication)
@@ -445,7 +510,7 @@ export default function AgentDashboardClient({
     // 2. If new kundli, validate token sufficiency server-side
     if (isNew) {
       const formData = new FormData();
-      formData.append("plan", selectedPackage || "");
+      formData.append("plan", String(selectedPackage || ""));
       const result = await generateReport(formData);
       if (!result || !result.success) {
         toast.error("Action Failed", { description: result?.message || "Unknown server error" });
@@ -460,35 +525,124 @@ export default function AgentDashboardClient({
       });
     }
 
-    // 3. Start pipeline
-    toast.success("Generation Initiated", {
-      description: "Connecting to the celestial pipeline.",
+    // 3. Trigger Async Ingestion
+    toast.info("Ingestion Started", {
+      description: "Celestial data is being gathered in the background.",
     });
 
-    const derivedTz = lat && lng ? Math.round((Number(lng) / 15) * 2) / 2 : 5.5;
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      
+      // Format Date & Time for backend (DD/MM/YYYY & HH:MM)
+      const [y, m, d] = dob.split("-");
+      const formattedDate = `${d.padStart(2, "0")}/${m.padStart(2, "0")}/${y}`;
+      const timeParts = (tob || "12:00").split(":");
+      const formattedTime = `${timeParts[0].padStart(2, "0")}:${timeParts[1].padStart(2, "0")}`;
 
-    const details = {
-      username: name,
-      dob: new Date(dob),
-      tob: tob || "12:00",
-      pob: locationName || "Unknown Location",
-      latitude: Number(lat),
-      longitude: Number(lng),
-      timezone: derivedTz,
-      language: language,
-    };
+      const res = await fetch(`${API_BASE_URL}/api/full-report`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${session?.access_token}`
+        },
+        body: JSON.stringify({
+          user: "agent",
+          id: String(agentData?.id),
+          payload: {
+            name,
+            date: formattedDate,
+            time: formattedTime,
+            latitude: Number(lat),
+            longitude: Number(lng),
+            tz: Number(timezone),
+            lang: language,
+            place_of_birth: locationName,
+            gender: gender as string
+          },
+          plan_id: selectedPackage
+        })
+      });
 
-    setBirthDetails(details);
-    resetPipeline();
+      const data = await res.json();
+      console.log("[FullReport Ingestion] Response:", data);
 
-    const store = useStore.getState();
-    const socketRoomId = `room_${Math.random().toString(36).substring(2, 9)}_${Date.now()}`;
-    store.setJyotishamData("socketRoom", socketRoomId as any);
-    store.setJyotishamData("planId", (selectedPackage || null) as any);
+      if (!res.ok) {
+        toast.error("Ingestion Error", { description: data.error || "Failed to initiate report" });
+        throw new Error(data.error || "Failed to initiate report");
+      }
 
-    // SPA Flow: Mount the pipeline natively
-    setGenerationStatus("pipeline");
+      setGeneratedReportId(data.report_id);
+      setGenerationStatus("processing");
+      setReportProgress("QUEUED");
+      setIsLoading(false);
+      
+    } catch (err: any) {
+      toast.error("Ingestion Failed", { description: err.message });
+      setIsLoading(false);
+    }
   };
+
+  // ── Realtime Status Tracking for Async Ingestion ──
+  useEffect(() => {
+    if (generationStatus !== "processing" || !generatedReportId) return;
+
+    // 1. Realtime Subscription (Instant Updates)
+    const channel = supabase
+      .channel(`report_status_${generatedReportId}`)
+      .on(
+        'postgres_changes',
+        {
+          event: 'UPDATE',
+          schema: 'public',
+          table: 'agentreports',
+          filter: `report_id=eq.${generatedReportId}`
+        },
+        (payload: any) => {
+          const { status, progress, failure_reason } = payload.new;
+          console.log("[Realtime] Status Update:", status, progress);
+          
+          if (progress) setReportProgress(progress);
+          
+          if (status === "READY") {
+            setGenerationStatus("viewing");
+            setSaveReportState("success");
+            toast.success("Synthesis Complete", { description: "Celestial architecture is ready." });
+          } else if (status === "FAILED") {
+            setGenerationStatus("viewing");
+            setSaveReportState("error");
+            setReportError(failure_reason || "Unknown processing error");
+          }
+        }
+      )
+      .subscribe();
+
+    // 2. Initial Fetch (Catch missed transitions)
+    const checkInitial = async () => {
+      const { data } = await supabase
+        .from("agentreports")
+        .select("status, progress, failure_reason")
+        .eq("report_id", generatedReportId)
+        .single();
+      
+      if (data) {
+        setReportProgress(data.progress);
+        if (data.status === "READY" || data.status === "FAILED") {
+          setGenerationStatus("viewing");
+          setSaveReportState(data.status === "READY" ? "success" : "error");
+          if (data.status === "FAILED") setReportError(data.failure_reason);
+        }
+      }
+    };
+    checkInitial();
+
+    // 3. Fallback Polling (Every 10s for absolute safety)
+    const interval = setInterval(checkInitial, 10000);
+
+    return () => {
+      supabase.removeChannel(channel);
+      clearInterval(interval);
+    };
+  }, [generationStatus, generatedReportId, supabase]);
 
   const initiateReportSave = useCallback(async (existingId?: string) => {
     const report_id = existingId || crypto.randomUUID();
@@ -503,13 +657,12 @@ export default function AgentDashboardClient({
 
     const finalBirthDetails = {
       username: name,
-      date: formattedDate,
-      time: tob || "12:00",
+      date_of_birth: formattedDate,
+      time_of_birth: tob || "12:00",
       latitude: Number(lat),
       longitude: Number(lng),
       tz: lat && lng ? Math.round((Number(lng) / 15) * 2) / 2 : 5.5,
       lang: language,
-      room: currentSocketRoom,
     };
 
     // 2. Gather all shortcuts for the backend to pull from Redis
@@ -519,10 +672,20 @@ export default function AgentDashboardClient({
       predictions: predictionKeys,
     };
 
-    // 2. Setup listener
-    const onReportSaved = async (data: any) => {
-      if (data.report_id !== report_id) return;
-      socket.off("savedreportdata", onReportSaved);
+    // 3. Trigger the backend save process
+    try {
+      const response = await fetch(`${API_BASE_URL}/savekundlidata`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          payload: finalBirthDetails,
+          report_id,
+          shortcuts,
+          user_id: agentData.id,
+        }),
+      });
+      
+      if (!response.ok) throw new Error("Backend aggregation failed");
 
       // 3. Backend Success -> Now finalize Supabase (tokens + records)
       const result = await finalizeKundliGeneration({
@@ -531,7 +694,7 @@ export default function AgentDashboardClient({
         tob,
         lat: Number(lat),
         lng: Number(lng),
-        gender,
+        gender: gender as string,
         locationName,
         planId: Number(selectedPackage),
         isNewKundli,
@@ -548,33 +711,14 @@ export default function AgentDashboardClient({
         setSaveReportState("error");
         toast.error("Supabase Finalization Failed", { description: result.error });
       }
-    };
-
-    socket.on("savedreportdata", onReportSaved);
-
-    // 4. Trigger the backend save process
-    try {
-      const response = await fetch(`${API_BASE_URL}/savekundlidata`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          payload: finalBirthDetails,
-          report_id,
-          shortcuts,
-          user_id: agentData.id, // Identify the agent who generated this
-        }),
-      });
-      
-      if (!response.ok) throw new Error("Backend save failed");
     } catch (err: any) {
       console.error(`[initiateReportSave] Error: ${err.message}`);
-      socket.off("savedreportdata", onReportSaved);
       setSaveReportState("error");
       toast.error("Data aggregation failed", { description: "Click retry to try again." });
     }
   }, [
     name, dob, tob, lat, lng, language, predictions, 
-    gender, locationName, selectedPackage, isNewKundli, paperQuality
+    gender, locationName, selectedPackage, isNewKundli, paperQuality, agentData.id
   ]);
 
   // ── Auto-Finalize Trace: Detect when pipeline + all predictions are done ──
@@ -608,14 +752,14 @@ export default function AgentDashboardClient({
 
   const resetGenerationForm = () => {
     setGenerationStatus("idle");
-    setName("");
-    setDob("");
-    setTob("");
-    setLat("");
-    setLng("");
-    setGender("");
-    setLocationName("");
-    setSearchQuery("");
+    setName("Test User");
+    setDob("1995-05-15");
+    setTob("10:30");
+    setLat("28.6139");
+    setLng("77.2090");
+    setGender("male");
+    setLocationName("New Delhi, Delhi, India");
+    setSearchQuery("New Delhi");
     setSelectedPackage("");
     setLanguage("en");
     setPaperQuality("regular");
@@ -681,6 +825,19 @@ export default function AgentDashboardClient({
           </button>
 
           <button
+            onClick={() => setActiveTab("sample")}
+            className={`flex items-center gap-3 px-4 py-3 rounded-xl group border transition-all duration-300 ${
+              activeTab === "sample"
+                ? "border-primary text-primary dark:text-primary bg-transparent shadow-none"
+                : "border-transparent text-slate-600 dark:text-zinc-400 hover:text-primary dark:hover:text-white hover:border-primary/50 hover:bg-slate-50 dark:hover:bg-white/5"
+            }`}
+          >
+            <Zap size={18} className={activeTab === "sample" ? "text-primary" : "text-slate-400 dark:text-zinc-500 group-hover:text-primary transition-colors"} />
+            <span className="text-sm font-medium tracking-wide">Sample Engine</span>
+           {activeTab === "sample" && <motion.div layoutId="active-pill" className="ml-auto w-1 h-4 rounded-full bg-primary" />}
+          </button>
+
+          <button
             onClick={() => setActiveTab("view_report")}
             className={`flex items-center gap-3 px-4 py-3 rounded-xl group border transition-all duration-300 ${
               activeTab === "view_report"
@@ -710,7 +867,7 @@ export default function AgentDashboardClient({
 
       {/* Main Content */}
       <main className="flex-1 md:ml-64 p-4 pt-24 md:p-8 md:pt-28 relative pb-28 md:pb-8">
-        <SocketInitializer />
+
         {activeTab === "generate" && (
           <GenerateTab
             agentData={agentData}
@@ -736,7 +893,7 @@ export default function AgentDashboardClient({
             suggestions={suggestions}
             handleSelectLocation={handleSelectLocation}
             handleOpenMap={handleOpenMap}
-            selectedPackage={selectedPackage}
+            selectedPackage={String(selectedPackage)}
             setSelectedPackage={setSelectedPackage}
             language={language}
             setLanguage={setLanguage}
@@ -756,6 +913,8 @@ export default function AgentDashboardClient({
             setSaveRetryCount={setSaveRetryCount}
             initiateReportSave={initiateReportSave}
             generatedReportId={generatedReportId}
+            reportProgress={reportProgress}
+            reportError={reportError}
             setActiveTab={setActiveTab}
             setSelectedReportId={setSelectedReportId}
           />
@@ -766,7 +925,7 @@ export default function AgentDashboardClient({
         {activeTab === "reports" && (
           <ReportsOverviewTab
             agentData={agentData}
-            recentReports={recentReports}
+            recentReports={reports}
             branchData={branchData}
             tokenRequests={tokenRequests}
             setActiveTab={setActiveTab}
@@ -794,11 +953,16 @@ export default function AgentDashboardClient({
         {/* --- REPORT HISTORY TAB --- */}
         {activeTab === "history" && (
           <HistoryTab
-            recentReports={recentReports}
+            recentReports={reports}
             setActiveTab={setActiveTab}
             setSelectedReportId={setSelectedReportId}
             formatDeterministicDate={formatDeterministicDate}
           />
+        )}
+
+        {/* --- SAMPLE REPORT TAB --- */}
+        {activeTab === "sample" && user && (
+          <SampleReportTab user={user} role="agent" />
         )}
 
         {/* --- VIEW REPORT OVERLAY/TAB --- */}

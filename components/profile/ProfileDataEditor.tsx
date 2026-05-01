@@ -243,16 +243,36 @@ export default function ProfileDataEditor({
             <Clock size={18} />
           </div>
           <div className="flex-1">
-            <p className="text-xs text-slate-500 dark:text-slate-400 mb-1 font-medium transition-colors duration-300">
-              Time of Birth
-            </p>
+            <div className="flex items-center justify-between mb-1">
+              <p className="text-xs text-slate-500 dark:text-slate-400 font-medium transition-colors duration-300">
+                Time of Birth
+              </p>
+              {isEditing && (
+                <span className="text-[9px] bg-emerald-500/10 text-emerald-500 px-1.5 py-0.5 rounded border border-emerald-500/20 font-bold uppercase tracking-tighter">24H Format</span>
+              )}
+            </div>
             {isEditing ? (
-              <ModernAuthInput
-                name="tob"
-                type="time"
-                value={tob}
-                onChange={(e) => setTob(e.target.value)}
-              />
+              <div className="relative group">
+                <input
+                  type="text"
+                  placeholder="HH:MM"
+                  value={tob}
+                  onChange={(e) => {
+                    let val = e.target.value.replace(/[^0-9:]/g, "");
+                    if (val.length === 2 && !val.includes(":")) val += ":";
+                    if (val.length > 5) val = val.substring(0, 5);
+                    setTob(val);
+                  }}
+                  onBlur={(e) => {
+                    const val = e.target.value;
+                    const regex = /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/;
+                    if (val && !regex.test(val)) {
+                      setTob(userData?.time_of_birth || "");
+                    }
+                  }}
+                  className="w-full bg-slate-50 dark:bg-white/[0.03] border border-slate-200 dark:border-white/10 rounded-xl px-4 py-3 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-white/30 focus:outline-none focus:border-[#7e56da]/50 focus:bg-white dark:focus:bg-white/[0.05] transition-all duration-300 font-mono text-sm"
+                />
+              </div>
             ) : (
               <p className="text-sm text-slate-900 dark:text-white font-medium transition-colors duration-300">
                 {userData?.time_of_birth || "Not provided"}

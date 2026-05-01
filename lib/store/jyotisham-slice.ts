@@ -207,11 +207,6 @@ export const createJyotishamSlice: StateCreator<JyotishamSlice> = (set) => ({
         }
       });
 
-      // Special handling for Bhinnashtakavarga (as it's often saved as a grouped object)
-      if (astrology.binnashtakvarga) {
-        nextJyotisham.horoscope.binnashtakvarga = astrology.binnashtakvarga;
-      }
-
       // 2. Map Predictions
       Object.entries(predictions || {}).forEach(([slug, val]: [string, any]) => {
         nextJyotisham.predictions[slug] = {
@@ -220,6 +215,29 @@ export const createJyotishamSlice: StateCreator<JyotishamSlice> = (set) => ({
           structured: val.structured || null
         };
       });
+
+      // 3. Aggregate separate Bhinnashtakavarga entries if they exist
+      const planets = ["sun", "moon", "mars", "mercury", "jupiter", "venus", "saturn"];
+      let aggregatedBav: any = null;
+      
+      planets.forEach(p => {
+        const key = `binnashtakvarga_${p}`;
+        if (astrology[key]) {
+          if (!aggregatedBav) aggregatedBav = {};
+          // Capitalize first letter for PDF component
+          const capitalized = p.charAt(0).toUpperCase() + p.slice(1);
+          aggregatedBav[capitalized] = astrology[key].response || astrology[key];
+        }
+      });
+
+      if (aggregatedBav) {
+        nextJyotisham.horoscope.binnashtakvarga = {
+          status: "success",
+          response: aggregatedBav
+        };
+      } else if (astrology.binnashtakvarga) {
+        nextJyotisham.horoscope.binnashtakvarga = astrology.binnashtakvarga;
+      }
 
       return { jyotishamData: nextJyotisham };
     }),

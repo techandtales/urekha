@@ -12,7 +12,7 @@
  *   fetch(`${API_BASE_URL}/predict/...`)
  */
 
-const DEV_URL = "http://127.0.0.1:4040";
+const DEV_URL = "http://localhost:4040";
 const PROD_URL = "https://api.urekha.com";
 
 /**

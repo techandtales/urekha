@@ -458,17 +458,20 @@ const OrnateHeadingDivider = () => (
 
 // ── Bold text parser (**text** → styled bold) ──
 function renderParagraphElements(
-  text: string,
+  text: any,
   keyPrefix: string,
   hindiBoldOverride?: Record<string, any>,
 ) {
   if (!text) return null;
-  // If no bold markers, return raw string to keep it as a single node
-  if (!text.includes("**")) {
-    return text;
+
+  // Handle non-string inputs (e.g., objects or arrays erroneously passed by AI synthesis)
+  const safeText = typeof text === "string" ? text : String(text);
+
+  if (!safeText.includes("**")) {
+    return safeText;
   }
 
-  const parts = text.split(/(\*\*.*?\*\*)/g);
+  const parts = safeText.split(/(\*\*.*?\*\*)/g);
   return parts
     .map((part, idx) => {
       if (!part) return null;
@@ -486,7 +489,7 @@ function renderParagraphElements(
       }
       return <Text key={`${keyPrefix}-t${idx}`}>{part}</Text>;
     })
-    .filter(Boolean);
+    .filter((v): v is JSX.Element | string => v !== null);
 }
 
 // ══════════════════════════════════════════════════════════════════════════
@@ -621,9 +624,9 @@ function renderContentBlock(
                     hindiBold,
                   )}
                 </Text>
-              ))}
+              )).filter(Boolean)}
             </View>
-          ))}
+          )).filter(Boolean)}
         </View>
       );
 
@@ -688,7 +691,7 @@ function renderContentBlock(
             >
               • {renderParagraphElements(item, `bl-${idx}-${i}`, hindiBold)}
             </Text>
-          ))}
+          )).filter(Boolean)}
         </View>
       );
 
@@ -726,7 +729,7 @@ function renderContentBlocks(blocks: ContentBlock[], isHindi: boolean) {
     : {};
   return blocks.map((block, idx) =>
     renderContentBlock(block, idx, hindiFont, hindiBold, isHindi),
-  );
+  ).filter(Boolean);
 }
 
 // ══════════════════════════════════════════════════════════════════════════
@@ -1053,7 +1056,7 @@ export default function ReactPdfPredictionsView() {
               isHindi={lang === "hi"}
             />
           );
-        })}
+        }).filter(Boolean)}
       </Document>
     );
   }, [predictions, lang, hasPredictions]);
