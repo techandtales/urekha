@@ -24,11 +24,17 @@ import {
   View,
   StyleSheet,
   Font,
-  PDFViewer,
   Svg,
   Path,
   Circle,
 } from "@react-pdf/renderer";
+import dynamic from "next/dynamic";
+
+// Dynamically import PDFViewer to avoid SSR crash on Vercel
+const PDFViewer = dynamic(
+  () => import("@react-pdf/renderer").then((mod) => mod.PDFViewer),
+  { ssr: false }
+);
 import { useSvgToPng, DUMMY_SVG } from "@/utils/svgToPng";
 
 Font.register({

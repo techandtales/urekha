@@ -23,7 +23,15 @@ import {
   Download
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { PDFViewer, Document, pdf } from "@react-pdf/renderer";
+import { Document, pdf } from "@react-pdf/renderer";
+import dynamic from "next/dynamic";
+
+// Dynamically import PDFViewer to avoid SSR crash on Vercel
+const PDFViewer = dynamic(
+  () => import("@react-pdf/renderer").then((mod) => mod.PDFViewer),
+  { ssr: false }
+);
+
 import "@/components/pdf/pdfFontRegistry";
 import { fetchUserReportFromMongo } from "@/app/actions/report-actions";
 import { toast } from "sonner";

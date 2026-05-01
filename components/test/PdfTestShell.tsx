@@ -3,8 +3,14 @@
 import React, { useState, useMemo } from "react";
 import { 
   Document, 
-  PDFViewer, 
 } from "@react-pdf/renderer";
+import dynamic from "next/dynamic";
+
+// Dynamically import PDFViewer to avoid SSR crash on Vercel
+const PDFViewer = dynamic(
+  () => import("@react-pdf/renderer").then((mod) => mod.PDFViewer),
+  { ssr: false }
+);
 import { toast } from "sonner";
 import { useStore } from "@/lib/store";
 import type { Language } from "@/types/languages";

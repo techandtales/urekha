@@ -3,7 +3,14 @@
 import React, { useState, useEffect } from "react";
 import { useStore } from "@/lib/store";
 import { TriangleAlert, ArrowLeft, Printer } from "lucide-react";
-import { PDFViewer, Document } from "@react-pdf/renderer";
+import { Document } from "@react-pdf/renderer";
+import dynamic from "next/dynamic";
+
+// Dynamically import PDFViewer to avoid SSR crash on Vercel
+const PDFViewer = dynamic(
+  () => import("@react-pdf/renderer").then((mod) => mod.PDFViewer),
+  { ssr: false }
+);
 
 // --- Custom Debounce Hook to stop aggressive iframe flashing during socket stream ---
 function useDebounce<T>(value: T, delay: number): T {

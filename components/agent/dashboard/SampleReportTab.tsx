@@ -22,7 +22,13 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
-import { PDFViewer } from "@react-pdf/renderer";
+import dynamic from "next/dynamic";
+
+// Dynamically import PDFViewer to avoid SSR crash on Vercel
+const PDFViewer = dynamic(
+  () => import("@react-pdf/renderer").then((mod) => mod.PDFViewer),
+  { ssr: false }
+);
 import { SampleReportPDF } from "@/components/admin/SampleReportPDF";
 import { getSampleReportAction } from "@/app/actions/report-actions";
 

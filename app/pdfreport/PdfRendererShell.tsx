@@ -1,7 +1,14 @@
 "use client";
 import React, { useEffect, useState, useMemo } from "react";
 import { useStore } from "@/lib/store";
-import { PDFViewer, Document, pdf } from "@react-pdf/renderer";
+import { Document, pdf } from "@react-pdf/renderer";
+import dynamic from "next/dynamic";
+
+// Dynamically import PDFViewer to avoid SSR crash on Vercel
+const PDFViewer = dynamic(
+  () => import("@react-pdf/renderer").then((mod) => mod.PDFViewer),
+  { ssr: false }
+);
 import "@/components/pdf/pdfFontRegistry";
 import { ReportLoadingScreen } from "./page";
 import {
