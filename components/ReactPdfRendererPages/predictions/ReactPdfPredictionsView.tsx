@@ -9,11 +9,16 @@ import {
   View,
   StyleSheet,
   Font,
-  PDFViewer,
   Svg,
   Path,
   Circle,
 } from "@react-pdf/renderer";
+import dynamic from "next/dynamic";
+
+const PDFViewer = dynamic(
+  () => import("@react-pdf/renderer").then((mod) => mod.PDFViewer),
+  { ssr: false }
+);
 import type {
   ContentBlock,
   PredictionJSONResponse,
@@ -601,32 +606,39 @@ function renderContentBlock(
               </Text>
             ))}
           </View>
-          {block.rows.map((row: string[], ri: number) => (
-            <View
-              key={ri}
-              style={[styles.tableRow, ri % 2 === 0 ? styles.tableRowEven : {}]}
-            >
-              {row.map((cell: string, ci: number) => (
-                <Text
-                  key={ci}
-                  style={[
-                    styles.tableCell,
-                    hindiFont,
-                    isHindi ? hindiStyleOverrides.tableCell : {},
-                  ]}
-                  hyphenationCallback={
-                    isHindi ? (word: string) => [word] : undefined
-                  }
-                >
-                  {renderParagraphElements(
-                    cell,
-                    `tb-${idx}-${ri}-${ci}`,
-                    hindiBold,
-                  )}
-                </Text>
-              )).filter(Boolean)}
-            </View>
-          )).filter(Boolean)}
+          {block.rows
+            .map((row: string[], ri: number) => (
+              <View
+                key={ri}
+                style={[
+                  styles.tableRow,
+                  ri % 2 === 0 ? styles.tableRowEven : {},
+                ]}
+              >
+                {row
+                  .map((cell: string, ci: number) => (
+                    <Text
+                      key={ci}
+                      style={[
+                        styles.tableCell,
+                        hindiFont,
+                        isHindi ? hindiStyleOverrides.tableCell : {},
+                      ]}
+                      hyphenationCallback={
+                        isHindi ? (word: string) => [word] : undefined
+                      }
+                    >
+                      {renderParagraphElements(
+                        cell,
+                        `tb-${idx}-${ri}-${ci}`,
+                        hindiBold,
+                      )}
+                    </Text>
+                  ))
+                  .filter(Boolean)}
+              </View>
+            ))
+            .filter(Boolean)}
         </View>
       );
 
@@ -677,21 +689,23 @@ function renderContentBlock(
     case "bullet_list":
       return (
         <View key={idx} style={styles.bulletList}>
-          {block.items.map((item: string, i: number) => (
-            <Text
-              key={i}
-              style={[
-                styles.bulletItem,
-                hindiFont,
-                isHindi ? hindiStyleOverrides.bulletItem : {},
-              ]}
-              hyphenationCallback={
-                isHindi ? (word: string) => [word] : undefined
-              }
-            >
-              • {renderParagraphElements(item, `bl-${idx}-${i}`, hindiBold)}
-            </Text>
-          )).filter(Boolean)}
+          {block.items
+            .map((item: string, i: number) => (
+              <Text
+                key={i}
+                style={[
+                  styles.bulletItem,
+                  hindiFont,
+                  isHindi ? hindiStyleOverrides.bulletItem : {},
+                ]}
+                hyphenationCallback={
+                  isHindi ? (word: string) => [word] : undefined
+                }
+              >
+                • {renderParagraphElements(item, `bl-${idx}-${i}`, hindiBold)}
+              </Text>
+            ))
+            .filter(Boolean)}
         </View>
       );
 
@@ -727,9 +741,11 @@ function renderContentBlocks(blocks: ContentBlock[], isHindi: boolean) {
   const hindiBold = isHindi
     ? { fontFamily: "NotoSansDevanagari" as const, fontWeight: "bold" as const }
     : {};
-  return blocks.map((block, idx) =>
-    renderContentBlock(block, idx, hindiFont, hindiBold, isHindi),
-  ).filter(Boolean);
+  return blocks
+    .map((block, idx) =>
+      renderContentBlock(block, idx, hindiFont, hindiBold, isHindi),
+    )
+    .filter(Boolean);
 }
 
 // ══════════════════════════════════════════════════════════════════════════
@@ -1043,20 +1059,22 @@ export default function ReactPdfPredictionsView() {
 
     return (
       <Document title="Predictions Report" author="Urekha">
-        {predictionCategories.map((cat) => {
-          const pred = predictions[cat];
-          if (pred?.status !== "success" || !pred.data) return null;
+        {predictionCategories
+          .map((cat) => {
+            const pred = predictions[cat];
+            if (pred?.status !== "success" || !pred.data) return null;
 
-          return (
-            <CategoryPage
-              key={cat}
-              category={cat}
-              data={pred.data}
-              structured={pred.structured}
-              isHindi={lang === "hi"}
-            />
-          );
-        }).filter(Boolean)}
+            return (
+              <CategoryPage
+                key={cat}
+                category={cat}
+                data={pred.data}
+                structured={pred.structured}
+                isHindi={lang === "hi"}
+              />
+            );
+          })
+          .filter(Boolean)}
       </Document>
     );
   }, [predictions, lang, hasPredictions]);

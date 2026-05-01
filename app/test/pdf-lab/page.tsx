@@ -1,15 +1,15 @@
 "use client";
 
 import React, { useRef, useEffect, useMemo, useState } from "react";
-import {
-  Document,
-  PDFViewer,
-} from "@react-pdf/renderer";
+import { Document } from "@react-pdf/renderer";
+import dynamic from "next/dynamic";
+
+const PDFViewer = dynamic(
+  () => import("@react-pdf/renderer").then((m) => m.PDFViewer),
+  { ssr: false }
+);
 import { useStore } from "@/lib/store";
-import {
-  type PipelineActions,
-  type BaseArgs
-} from "@/lib/pipeline/constants";
+import { type PipelineActions, type BaseArgs } from "@/lib/pipeline/constants";
 import { ModularOrchestrator as createPipeline } from "@/lib/pipeline/modularOrchestrator";
 import "@/components/pdf/pdfFontRegistry";
 
@@ -45,7 +45,10 @@ interface PageGroup {
   id: string;
   label: string;
   icon: string;
-  renderPages: (lang: "en" | "hi", data: ReturnType<typeof useStore.getState>) => React.ReactElement[];
+  renderPages: (
+    lang: "en" | "hi",
+    data: ReturnType<typeof useStore.getState>,
+  ) => React.ReactElement[];
 }
 
 const PAGE_GROUPS: PageGroup[] = [
@@ -72,13 +75,16 @@ const PAGE_GROUPS: PageGroup[] = [
         data={store.jyotishamData.extendedHoro.extendedKundli?.response as any}
       />,
       (() => {
-        const divisionalPngs = (store.jyotishamData.charts?.divisionalChartSvgs || {}) as Record<string, string>;
+        const divisionalPngs = (store.jyotishamData.charts
+          ?.divisionalChartSvgs || {}) as Record<string, string>;
         // Use a generic placeholder logic or just pass null if missing
         return (
           <ReactPdfLagnaProfilePage
             key="lagna"
             lang={lang}
-            data={store.jyotishamData.horoscope.ascendantReport?.response as any}
+            data={
+              store.jyotishamData.horoscope.ascendantReport?.response as any
+            }
             chartImage={divisionalPngs["D1"] || null}
           />
         );
@@ -128,7 +134,9 @@ const PAGE_GROUPS: PageGroup[] = [
         key="kp-sig"
         lang={lang}
         planets={store.jyotishamData.kpAstrology.significators?.response as any}
-        houses={store.jyotishamData.kpAstrology.houseSignificators?.response as any}
+        houses={
+          store.jyotishamData.kpAstrology.houseSignificators?.response as any
+        }
       />,
     ],
   },
@@ -137,7 +145,8 @@ const PAGE_GROUPS: PageGroup[] = [
     label: "Divisional Charts",
     icon: "📊",
     renderPages: (lang, store) => {
-      const divisionalPngs = (store.jyotishamData.charts?.divisionalChartSvgs || {}) as Record<string, string>;
+      const divisionalPngs = (store.jyotishamData.charts?.divisionalChartSvgs ||
+        {}) as Record<string, string>;
       const transitPng = store.jyotishamData.charts?.transitChartSvg || null;
       return [
         <ReactPdfDivisionalChartsPage
@@ -211,7 +220,7 @@ const PAGE_GROUPS: PageGroup[] = [
     renderPages: (lang, store) => {
       const preds = store.jyotishamData.predictions;
       const hasAny = Object.keys(preds).some(
-        (cat) => preds[cat]?.status === "success" && preds[cat]?.data
+        (cat) => preds[cat]?.status === "success" && preds[cat]?.data,
       );
       if (!hasAny) return [];
       return [
@@ -261,21 +270,32 @@ export default function UnifiedPdfTestPage() {
     lang: "hi",
   };
 
-  const actions: PipelineActions = useMemo(() => ({
-    setJyotishamData,
-    pushMessage,
-    updateMessage,
-    pushError,
-    removeError,
-    incrementCompleted,
-    setProgress,
-    setPipelineRunning,
-    setPrediction,
-    resetPipeline,
-  }), [
-    setJyotishamData, pushMessage, updateMessage, pushError, removeError,
-    incrementCompleted, setProgress, setPipelineRunning, setPrediction, resetPipeline,
-  ]);
+  const actions: PipelineActions = useMemo(
+    () => ({
+      setJyotishamData,
+      pushMessage,
+      updateMessage,
+      pushError,
+      removeError,
+      incrementCompleted,
+      setProgress,
+      setPipelineRunning,
+      setPrediction,
+      resetPipeline,
+    }),
+    [
+      setJyotishamData,
+      pushMessage,
+      updateMessage,
+      pushError,
+      removeError,
+      incrementCompleted,
+      setProgress,
+      setPipelineRunning,
+      setPrediction,
+      resetPipeline,
+    ],
+  );
 
   // Track completion
   const isComplete =
@@ -334,7 +354,9 @@ export default function UnifiedPdfTestPage() {
       : 0;
 
   // Count successful/failed messages
-  const successCount = pipelineMessages.filter((m) => m.status === "success").length;
+  const successCount = pipelineMessages.filter(
+    (m) => m.status === "success",
+  ).length;
   const errorCount = pipelineErrors.length;
 
   return (
@@ -371,7 +393,9 @@ export default function UnifiedPdfTestPage() {
                 <span className="text-xs font-mono text-white/50 uppercase tracking-widest">
                   Pipeline Progress
                 </span>
-                <span className="text-sm font-bold text-[#00FF94]">{progressPct}%</span>
+                <span className="text-sm font-bold text-[#00FF94]">
+                  {progressPct}%
+                </span>
               </div>
               <div className="w-full h-2 bg-white/5 rounded-full overflow-hidden">
                 <div
@@ -381,7 +405,9 @@ export default function UnifiedPdfTestPage() {
               </div>
               <div className="flex gap-4 mt-2 text-[10px] font-mono text-white/30">
                 <span>✓ {successCount}</span>
-                {errorCount > 0 && <span className="text-red-400">✗ {errorCount}</span>}
+                {errorCount > 0 && (
+                  <span className="text-red-400">✗ {errorCount}</span>
+                )}
                 <span>
                   {pipelineProgress.completed}/{pipelineProgress.total}
                 </span>
@@ -399,8 +425,8 @@ export default function UnifiedPdfTestPage() {
                     msg.status === "success"
                       ? "text-[#00FF94]/80 bg-[#00FF94]/5"
                       : msg.status === "error"
-                      ? "text-red-400/80 bg-red-400/5"
-                      : "text-white/40 bg-white/[0.02]"
+                        ? "text-red-400/80 bg-red-400/5"
+                        : "text-white/40 bg-white/[0.02]"
                   }`}
                 >
                   {msg.status === "success" ? (
@@ -457,8 +483,18 @@ export default function UnifiedPdfTestPage() {
               <div className="flex flex-col items-center gap-4 text-white/15">
                 {!hasStarted.current ? (
                   <>
-                    <svg className="w-20 h-20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={0.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    <svg
+                      className="w-20 h-20"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={0.5}
+                        d="M13 10V3L4 14h7v7l9-11h-7z"
+                      />
                     </svg>
                     <p className="text-lg font-bold uppercase tracking-widest italic">
                       Click Generate to Start
@@ -473,8 +509,18 @@ export default function UnifiedPdfTestPage() {
                   </>
                 ) : (
                   <>
-                    <svg className="w-20 h-20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={0.5} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                    <svg
+                      className="w-20 h-20"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={0.5}
+                        d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+                      />
                     </svg>
                     <p className="text-lg font-bold uppercase tracking-widest italic">
                       Select a Page Group ↑
