@@ -489,7 +489,7 @@ function renderParagraphElements(
       }
       return <Text key={`${keyPrefix}-t${idx}`}>{part}</Text>;
     })
-    .filter((v): v is JSX.Element | string => v !== null);
+    .filter((v): v is React.ReactElement => v !== null);
 }
 
 // ══════════════════════════════════════════════════════════════════════════
